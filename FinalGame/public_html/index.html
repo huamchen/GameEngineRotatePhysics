@@ -6,7 +6,7 @@
 <!--Use embedded shader code for now, in order to remove async loading complexity.-->
 
 <body onload="
-        var game = new AdventuresOfDye();
+        var game = new MyGame();
         gEngine.Core.initializeEngineCore('GLCanvas', game);
             ">
     
@@ -99,27 +99,17 @@
             
    
     <!-- Client game code -->
-        <script type="text/javascript" src="src/AdventuresOfDye/AdventuresOfDye.js"></script>
-        <script type="text/javascript" src="src/AdventuresOfDye/GameLevel_01.js"></script>
-        <script type="text/javascript" src="src/AdventuresOfDye/GameLevel_02.js"></script>
-        <script type="text/javascript" src="src/AdventuresOfDye/GameLevel_Lights.js"></script>
-        <script type="text/javascript" src="src/AdventuresOfDye/GameLevel_LightControl.js"></script>
-        <script type="text/javascript" src="src/AdventuresOfDye/GameLevel_MaterialControl.js"></script>
-        
+        <script type="text/javascript" src="src/MyGame/MyGame.js"></script>
+        <script type="text/javascript" src="src/MyGame/MyGame_Physics.js"></script>
+          
         <!-- Objects -->
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Hero.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Minion.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/SentryMinion.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Boss.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Projectile.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Platform.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Wall.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Door.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/Button.js"></script>
-            <script type="text/javascript" src="src/AdventuresOfDye/Objects/ChaserMinion.js"></script>
-        <!-- Util -->
-            <script type="text/javascript" src="src/AdventuresOfDye/Util/SceneFileParser.js"></script>
-    
+            <script type="text/javascript" src="src/MyGame/Objects/Hero.js"></script>
+            <script type="text/javascript" src="src/MyGame/Objects/Minion.js"></script>
+            <script type="text/javascript" src="src/MyGame/Objects/Platform.js"></script>
+            <script type="text/javascript" src="src/MyGame/Objects/MovingPlatform.js"></script>
+            <script type="text/javascript" src="src/MyGame/Objects/Wall.js"></script>
+
+            
     <canvas id="GLCanvas" width="1280" height="720">
         <!-- GLCanvas is the area we will draw in: a 640x480 area. -->
         Your browser does not support the HTML5 canvas.

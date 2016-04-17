@@ -8,7 +8,7 @@
 // Execute when the DOM is ready to be manipulated.
 $(document).ready(function() {
   // Create the game.
-  var game = new AdventuresOfDye();
+  var game = new MyGame();
   gEngine.Core.initializeEngineCore('GLCanvas', game);
 });
     
