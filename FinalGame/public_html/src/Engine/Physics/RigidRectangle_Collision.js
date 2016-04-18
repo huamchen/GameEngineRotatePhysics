@@ -97,7 +97,8 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
       vec2.add(n,supportPoint,n);    
       this.mNormal[0]=n;
       this.mNormal[1]=supportPoint;
-      collisionInfo.setNormal(-faceNormal[bestIndex]);
+      vec2.scale(n,faceNormal[bestIndex],-1);
+      collisionInfo.setNormal(n);
       collisionInfo.setDepth(-bestDistance);
   } 
   return true;

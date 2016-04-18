@@ -20,7 +20,7 @@ MyGame.prototype._physicsSimulation = function() {
 
     // DyePack platform
     gEngine.Physics.processSetSet(this.mAllDyePacks, this.mAllPlatforms);
-    gEngine.Physics.processSetSet( this.mAllPlatforms,this.mAllDyePacks);
+    //gEngine.Physics.processSetSet( this.mAllPlatforms,this.mAllDyePacks);
     
     
     // Particle system collisions
