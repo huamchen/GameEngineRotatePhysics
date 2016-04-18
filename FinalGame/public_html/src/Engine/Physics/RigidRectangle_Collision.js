@@ -45,15 +45,17 @@ RigidRectangle.prototype.getSupport=function(dir){
 RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionInfo){
   var faceNormal=[];
   var i;
+  var n;
+  var supportPoint=vec2.fromValues(0, 0);
   for(i = 0; i < 4; ++i)
     faceNormal[i]= vec2.fromValues(0, 0);
-  vec2.subtract(faceNormal[0],this.mVertex[2],this.mVertex[1]);
+  vec2.subtract(faceNormal[0],this.mVertex[1],this.mVertex[2]);
   vec2.normalize(faceNormal[0],faceNormal[0]);
-  vec2.subtract(faceNormal[1],this.mVertex[3],this.mVertex[2]);
+  vec2.subtract(faceNormal[1],this.mVertex[2],this.mVertex[3]);
   vec2.normalize(faceNormal[1],faceNormal[1]);
-  vec2.subtract(faceNormal[2],this.mVertex[0],this.mVertex[3]);
-  vec2.normalize(faceNormal[2],faceNormal[3]);
-  vec2.subtract(faceNormal[3],this.mVertex[1],this.mVertex[0]);
+  vec2.subtract(faceNormal[2],this.mVertex[3],this.mVertex[0]);
+  vec2.normalize(faceNormal[2],faceNormal[2]);
+  vec2.subtract(faceNormal[3],this.mVertex[0],this.mVertex[1]);
   vec2.normalize(faceNormal[3],faceNormal[3]);
 
   
@@ -63,10 +65,11 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
   for(i = 0; i < 4; ++i)
   {
     // Retrieve a face normal from A
-    var n = faceNormal[i];
- 
+    n = faceNormal[i];
+    var dir= vec2.fromValues(0, 0);
+    vec2.scale(dir,n,-1);
     // Retrieve support point from B along -n
-    var s = otherRect.getSupport( -n );
+    var s = otherRect.getSupport( dir );
  
     // Retrieve vertex on face from A, transform into
     // B's model space
@@ -80,12 +83,20 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
     {
       bestDistance = d;
       bestIndex = i;
+      supportPoint=s;
     }
+   
+
   }
   if(bestDistance>=0)
       return false;
   else
-  {      
+  {       
+
+      vec2.scale(n,faceNormal[bestIndex],-bestDistance);
+      vec2.add(n,supportPoint,n);    
+      this.mNormal[0]=n;
+      this.mNormal[1]=supportPoint;
       collisionInfo.setNormal(-faceNormal[bestIndex]);
       collisionInfo.setDepth(-bestDistance);
   } 

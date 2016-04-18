@@ -17,11 +17,11 @@ function MovingPlatform(texture, atX, atY) {
     this.kYDeltaPos = 0.2;
     this.mPlatform.setColor([1, 1, 1, 0]);
     this.mPlatform.getXform().setPosition(atX, atY);
-    this.mPlatform.getXform().setSize(20, 10);
+    this.mPlatform.getXform().setSize(20, 20);
                                 // show each element for mAnimSpeed updates
     GameObject.call(this, this.mPlatform);
 
-    var rigidShape = new RigidRectangle(this.getXform(), 18, 7);
+    var rigidShape = new RigidRectangle(this.getXform(), 20, 20);
     rigidShape.setMass(1);  // ensures no movements!
     rigidShape.setRestitution(0.5);
     rigidShape.setDrawBounds(true);
@@ -52,4 +52,8 @@ MovingPlatform.prototype.update = function () {
         //v[0] += this.kXDelta;
         this.mPlatform.getXform().incXPosBy(this.kXDeltaPos);
     }
-    };
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Q)) {
+        //v[0] += this.kXDelta;
+        this.getPhysicsComponent().mTheta-=0.01;
+    }
+};

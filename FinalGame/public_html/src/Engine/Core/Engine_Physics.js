@@ -208,7 +208,7 @@ gEngine.Physics = (function () {
                 for (j=0; j<set2.size(); j++) {
                     s2 = set2.getObjectAt(j).getPhysicsComponent();
                     if ((s1 !== s2) && (s1.collided(s2, mCollisionInfo))) {
-                        resolveCollision(s1, s2, mCollisionInfo);
+                        //resolveCollision(s1, s2, mCollisionInfo);
                     }
                 }
             }

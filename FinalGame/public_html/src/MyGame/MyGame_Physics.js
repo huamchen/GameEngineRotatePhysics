@@ -17,14 +17,10 @@ MyGame.prototype._physicsSimulation = function() {
     // Hero Minion
     // wdgEngine.Physics.processObjSet(this.mHero, this.mAllMinions);
     
-    // Minion platform
-    gEngine.Physics.processSetSet(this.mAllMinions, this.mAllPlatforms);
-    
+
     // DyePack platform
     gEngine.Physics.processSetSet(this.mAllDyePacks, this.mAllPlatforms);
-    
-    // DyePack Minions
-    gEngine.Physics.processSetSet(this.mAllDyePacks, this.mAllMinions);
+    gEngine.Physics.processSetSet( this.mAllPlatforms,this.mAllDyePacks);
     
     
     // Particle system collisions

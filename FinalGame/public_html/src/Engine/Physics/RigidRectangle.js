@@ -29,7 +29,9 @@ function RigidRectangle(xform, w, h) {
     this.mTopRight=null;
     this.mBottomRight=null;
     this.mBottomLeft=null;
-
+    this.mNormal=[];
+    this.mNormal[0]=vec2.fromValues(0, 0);
+    this.mNormal[1]=vec2.fromValues(0, 0);
 }
 gEngine.Core.inheritPrototype(RigidRectangle, RigidShape);
 
@@ -73,7 +75,11 @@ RigidRectangle.prototype.draw = function (aCamera) {
     this.mVertex[3]=vec2.fromValues(x-w, y-h);
 
     this.rotate(this.mTheta);
-    
+    this.mSides.setColor([0.1, 0.8, 0.1, 1]);
+    this.mSides.setFirstVertex(this.mNormal[0][0],this.mNormal[0][1]);  //TOP LEFT
+    this.mSides.setSecondVertex(this.mNormal[1][0],this.mNormal[1][1]); //TOP RIGHT
+    this.mSides.draw(aCamera);
+    this.mSides.setColor([0.1, 0.1, 0.8, 1]);
     this.mSides.setFirstVertex(this.mVertex[0][0],this.mVertex[0][1]);  //TOP LEFT
     this.mSides.setSecondVertex(this.mVertex[1][0],this.mVertex[1][1]); //TOP RIGHT
     this.mSides.draw(aCamera);

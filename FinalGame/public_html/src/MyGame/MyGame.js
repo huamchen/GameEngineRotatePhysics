@@ -69,36 +69,13 @@ MyGame.prototype.initialize = function () {
     dx = 80;
     ry = Math.random() * 5 + 20;
   
-    obj = new Platform(this.kPlatformTexture, 80, 50);
+    obj = new Platform(this.kPlatformTexture, 120, 50);
     this.mAllPlatforms.addToSet(obj);
     gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
     obj = new MovingPlatform(this.kDyePackTexture, 100, 100);
     this.mAllDyePacks.addToSet(obj);
     gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-    // the floor and ceiling
-    rx = -15;
-    for (i = 0; i<9; i++) {
-        obj = new Platform(this.kPlatformTexture, rx, 2);
-        this.mAllPlatforms.addToSet(obj);
-        gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-        obj = new Platform(this.kPlatformTexture, rx, 112);
-        this.mAllPlatforms.addToSet(obj);
-        gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-        rx += 30;
-    }
-    
-    // the left and right walls
-    ry = 12;
-    for (i = 0; i<8; i++) {
-        obj = new Wall(this.kWallTexture, 5, ry);
-        this.mAllPlatforms.addToSet(obj);
-        gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-        obj = new Wall(this.kWallTexture, 195, ry);
-        this.mAllPlatforms.addToSet(obj);
-        gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-        ry += 16;
-    }
-    
+  
     // 
     // the important objects
     //this.mHero = new Hero(this.kMinionSprite, 20, 30);   
