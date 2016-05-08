@@ -48,7 +48,7 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
   var n;
   var supportPoint=vec2.fromValues(0, 0);
   for(i = 0; i < 4; ++i)
-    faceNormal[i]= vec2.fromValues(0, 0);
+        faceNormal[i]= vec2.fromValues(0, 0);
   vec2.subtract(faceNormal[0],this.mVertex[1],this.mVertex[2]);
   vec2.normalize(faceNormal[0],faceNormal[0]);
   vec2.subtract(faceNormal[1],this.mVertex[2],this.mVertex[3]);
@@ -89,7 +89,11 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
 
   }
   if(bestDistance>=0)
+  {
+      this.mNormal[0]=vec2.fromValues(0, 0);
+      this.mNormal[1]=vec2.fromValues(0, 0);
       return false;
+  }
   else
   {       
 
@@ -97,8 +101,7 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
       vec2.add(n,supportPoint,n);    
       this.mNormal[0]=n;
       this.mNormal[1]=supportPoint;
-      vec2.scale(n,faceNormal[bestIndex],-1);
-      collisionInfo.setNormal(n);
+      collisionInfo.setNormal(-faceNormal[bestIndex]);
       collisionInfo.setDepth(-bestDistance);
   } 
   return true;
@@ -112,7 +115,7 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
  * @memberOf RigidRectangle
  */
 RigidRectangle.prototype.collidedRectRect = function(r1, r2, collisionInfo) {
-    var vFrom1to2 = vec2.fromValues(0, 0);
+    /*var vFrom1to2 = vec2.fromValues(0, 0);
     vec2.sub(vFrom1to2, r2.getPosition(), r1.getPosition());
     var xDepth = (r1.getWidth() / 2) + (r2.getWidth() / 2) - Math.abs(vFrom1to2[0]);
     if (xDepth > 0) {
@@ -137,7 +140,36 @@ RigidRectangle.prototype.collidedRectRect = function(r1, r2, collisionInfo) {
             return true;
         }
     }
-    return false;
+    return false;*/
+    var status1=false;
+
+    var status2=false;
+    var collisionInfoR1=new CollisionInfo();
+    var collisionInfoR2=new CollisionInfo();
+    status1=r1.findAxisLeastPenetration(r2,collisionInfoR1);
+    status2=r2.findAxisLeastPenetration(r1,collisionInfoR2);
+    if(status1&&status2)
+    {
+        if(collisionInfoR1.getDepth()<collisionInfoR2.getDepth())
+        {
+            collisionInfo=collisionInfoR1;
+            r2.mNormal[0]=r1.mNormal[0];
+            r2.mNormal[1]=r1.mNormal[1];
+        }
+        else {
+            collisionInfo=collisionInfoR2;
+            r1.mNormal[0]=r2.mNormal[0];
+            r1.mNormal[1]=r2.mNormal[1];
+        }
+    }
+    else{
+        collisionInfo=new CollisionInfo();
+        r1.mNormal[0]=vec2.fromValues(0, 0);
+        r1.mNormal[1]=vec2.fromValues(0, 0);
+        r2.mNormal[0]=vec2.fromValues(0, 0);
+        r2.mNormal[1]=vec2.fromValues(0, 0);
+    }
+    return status1&&status2;
 };
 
 /**
@@ -155,8 +187,8 @@ RigidRectangle.prototype.collided = function(otherShape, collisionInfo) {
             status = this.collidedRectCirc(this, otherShape, collisionInfo);
             break;
         case RigidShape.eRigidType.eRigidRectangle:
-            //status = this.collidedRectRect(this, otherShape, collisionInfo);
-            status = this.findAxisLeastPenetration(otherShape, collisionInfo);
+            status = this.collidedRectRect(this, otherShape, collisionInfo);
+            //status = this.findAxisLeastPenetration(otherShape, collisionInfo);
             break;
     }
     return status;

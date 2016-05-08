@@ -11,10 +11,14 @@
 
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-function Minion(spriteTexture, atX, atY) {
+function Minion(spriteTexture, atX, atY,id) {
     this.kSpeed = 5;
     this.mMinion = new SpriteAnimateRenderable(spriteTexture);
-
+    this.kXDelta = 1;
+    this.kYDelta = 2.0;
+    this.kXDeltaPos = 0.2;
+    this.kYDeltaPos = 0.2;
+    this.Id=id;
     this.mMinion.setColor([1, 1, 1, 0]);
     this.mMinion.getXform().setPosition(atX, atY);
     this.mMinion.getXform().setSize(18, 14.4);
@@ -33,11 +37,7 @@ function Minion(spriteTexture, atX, atY) {
     r.setFriction(0);
     r.setColor([0, 1, 0, 1]);
     r.setDrawBounds(true);
-    if (Math.random() > 0.5) {
-        r.setVelocity([this.kSpeed, 0]);
-    } else {
-        r.setVelocity([-this.kSpeed, 0]);
-    }
+   
     this.setPhysicsComponent(r);
 
     this.mHasCollision = false;
@@ -46,12 +46,46 @@ gEngine.Core.inheritPrototype(Minion, GameObject);
 
 Minion.prototype.update = function () {
     GameObject.prototype.update.call(this);
-    // remember to update this.mMinion's animation
-    this.mMinion.updateAnimation();
-    
-    if (this.mHasCollision) {
-        this.flipVelocity();
-        this.mHasCollision = false;
+ 
+    // control by WASD
+    var v = this.getPhysicsComponent().getVelocity();
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.One)) {
+        whichObject=1;
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Two)) {
+        whichObject=2;
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Three)) {
+        whichObject=3;
+    }
+    if(this.Id==whichObject)
+    {
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.W)) {
+        //v[1] += this.kYDelta;
+        this.mMinion.getXform().incYPosBy(this.kYDeltaPos);
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.S)) {
+       // v[1] -= this.kYDelta;
+       this.mMinion.getXform().incYPosBy(-this.kYDeltaPos);
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.A)) {
+        //v[0] -= this.kXDelta;
+        this.mMinion.getXform().incXPosBy(-this.kXDeltaPos);
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.D)) {
+        //v[0] += this.kXDelta;
+        this.mMinion.getXform().incXPosBy(this.kXDeltaPos);
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Q)) {
+        //v[0] += this.kXDelta;
+        
+        this.mMinion.getXform().incRotationByRad(-0.01);
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.E)) {
+        //v[0] += this.kXDelta;
+       
+        this.mMinion.getXform().incRotationByRad(0.01);
+    }
     }
 };
 

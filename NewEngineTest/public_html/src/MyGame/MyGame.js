@@ -12,11 +12,11 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
 gEngine.Core.inheritPrototype(MyGame, Scene);
+var whichObject=0;
 function MyGame() {
     this.kMinionSprite = "assets/minion_sprite.png";
     this.kPlatformTexture = "assets/platform.png";
     this.kWallTexture = "assets/wall.png";
-    this.kDyePackTexture = "assets/platform.png";
     this.kParticleTexture = "assets/particle.png";
     this.kPrompt = "RigidBody Physics!";
 
@@ -39,7 +39,6 @@ MyGame.prototype.loadScene = function () {
     gEngine.Textures.loadTexture(this.kMinionSprite);
     gEngine.Textures.loadTexture(this.kPlatformTexture);
     gEngine.Textures.loadTexture(this.kWallTexture);
-    gEngine.Textures.loadTexture(this.kDyePackTexture);
     gEngine.Textures.loadTexture(this.kParticleTexture);
 };
 
@@ -48,7 +47,6 @@ MyGame.prototype.unloadScene = function () {
     gEngine.Textures.unloadTexture(this.kMinionSprite);
     gEngine.Textures.unloadTexture(this.kPlatformTexture);
     gEngine.Textures.unloadTexture(this.kWallTexture);
-    gEngine.Textures.unloadTexture(this.kDyePackTexture);
     gEngine.Textures.unloadTexture(this.kParticleTexture);
 };
 
@@ -69,11 +67,18 @@ MyGame.prototype.initialize = function () {
     dx = 80;
     ry = Math.random() * 5 + 20;
   
-    obj = new Platform(this.kPlatformTexture, 120, 50);
+   
+    obj = new MovingPlatform(this.kPlatformTexture, 120, 50,1);
+    obj.mVisible=false;
     this.mAllPlatforms.addToSet(obj);
     gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-    obj = new MovingPlatform(this.kDyePackTexture, 100, 100);
-    this.mAllDyePacks.addToSet(obj);
+    obj = new MovingPlatform(this.kPlatformTexture, 20, 20,2);
+    obj.mVisible=false;
+    this.mAllPlatforms.addToSet(obj);
+    gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
+    obj = new Minion(this.kMinionSprite, 100, 100,3);
+    obj.mVisible=false;
+    this.mAllMinions.addToSet(obj);
     gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
   
     // 
@@ -81,4 +86,3 @@ MyGame.prototype.initialize = function () {
     //this.mHero = new Hero(this.kMinionSprite, 20, 30);   
     
 };
-

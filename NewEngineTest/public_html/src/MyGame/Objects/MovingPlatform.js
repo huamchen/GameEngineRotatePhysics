@@ -9,15 +9,17 @@
 
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 
-function MovingPlatform(texture, atX, atY) {
+function MovingPlatform(texture, atX, atY,id) {
     this.mPlatform = new TextureRenderable(texture);
     this.kXDelta = 1;
     this.kYDelta = 2.0;
     this.kXDeltaPos = 0.2;
     this.kYDeltaPos = 0.2;
+    this.Id=id;
     this.mPlatform.setColor([1, 1, 1, 0]);
     this.mPlatform.getXform().setPosition(atX, atY);
     this.mPlatform.getXform().setSize(20, 20);
+    
                                 // show each element for mAnimSpeed updates
     GameObject.call(this, this.mPlatform);
 
@@ -36,6 +38,19 @@ MovingPlatform.prototype.update = function () {
  
     // control by WASD
     var v = this.getPhysicsComponent().getVelocity();
+    
+    
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.One)) {
+        whichObject=1;
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Two)) {
+        whichObject=2;
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Three)) {
+        whichObject=3;
+    }
+    if(this.Id==whichObject)
+    {
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.W)) {
         //v[1] += this.kYDelta;
         this.mPlatform.getXform().incYPosBy(this.kYDeltaPos);
@@ -55,5 +70,12 @@ MovingPlatform.prototype.update = function () {
     if (gEngine.Input.isKeyPressed(gEngine.Input.keys.Q)) {
         //v[0] += this.kXDelta;
         this.getPhysicsComponent().mTheta-=0.01;
+        this.mPlatform.getXform().incRotationByRad(-0.01);
+    }
+    if (gEngine.Input.isKeyPressed(gEngine.Input.keys.E)) {
+        //v[0] += this.kXDelta;
+        this.getPhysicsComponent().mTheta+=0.01;
+        this.mPlatform.getXform().incRotationByRad(0.01);
+    }
     }
 };
