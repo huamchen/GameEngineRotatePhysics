@@ -101,7 +101,9 @@ RigidRectangle.prototype.findAxisLeastPenetration=function(otherRect, collisionI
       vec2.add(n,supportPoint,n);    
       this.mNormal[0]=n;
       this.mNormal[1]=supportPoint;
-      collisionInfo.setNormal(-faceNormal[bestIndex]);
+      var nor=vec2.fromValues(0, 0);
+      vec2.scale(nor,faceNormal[bestIndex],-1);
+      collisionInfo.setNormal(nor);
       collisionInfo.setDepth(-bestDistance);
   } 
   return true;
@@ -152,12 +154,14 @@ RigidRectangle.prototype.collidedRectRect = function(r1, r2, collisionInfo) {
     {
         if(collisionInfoR1.getDepth()<collisionInfoR2.getDepth())
         {
-            collisionInfo=collisionInfoR1;
+            collisionInfo.setNormal(collisionInfoR1.getNormal());
+            collisionInfo.setDepth(collisionInfoR1.getDepth());
             r2.mNormal[0]=r1.mNormal[0];
             r2.mNormal[1]=r1.mNormal[1];
         }
         else {
-            collisionInfo=collisionInfoR2;
+            collisionInfo.setNormal(collisionInfoR2.getNormal());
+            collisionInfo.setDepth(collisionInfoR2.getDepth());
             r1.mNormal[0]=r2.mNormal[0];
             r1.mNormal[1]=r2.mNormal[1];
         }

@@ -3,18 +3,15 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/MyGame/Objects/Manager.js</file>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Physics/RigidCircle.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/MyGame/MyGame.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/index.html</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/GameObjects/GameObject.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Physics/RigidShape_Behavior.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Core/Engine_GameLoop.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Core/Engine_Physics.js</file>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/MyGame/MyGame_Physics.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Utils/CollisionInfo.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/MyGame/Objects/MovingPlatform.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Physics/RigidCircle_Collision.js</file>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Physics/RigidShape.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Physics/RigidShape_Collision.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Physics/RigidRectangle_Collision.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Physics/RigidRectangle.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Particles/Particle.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/NewEngineTest/public_html/src/Engine/Core/Engine_Particle.js</file>
         </group>
     </open-files>
 </project-private>

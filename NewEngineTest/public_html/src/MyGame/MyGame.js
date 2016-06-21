@@ -72,11 +72,11 @@ MyGame.prototype.initialize = function () {
     obj.mVisible=false;
     this.mAllPlatforms.addToSet(obj);
     gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-    obj = new MovingPlatform(this.kPlatformTexture, 20, 20,2);
+    obj = new MovingPlatform(this.kPlatformTexture, 20, 20,3);
     obj.mVisible=false;
     this.mAllPlatforms.addToSet(obj);
     gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);
-    obj = new Minion(this.kMinionSprite, 100, 100,3);
+    obj = new Minion(this.kMinionSprite, 100, 100,7);
     obj.mVisible=false;
     this.mAllMinions.addToSet(obj);
     gEngine.LayerManager.addToLayer(gEngine.eLayer.eActors, obj);

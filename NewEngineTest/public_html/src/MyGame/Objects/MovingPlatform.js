@@ -23,7 +23,7 @@ function MovingPlatform(texture, atX, atY,id) {
                                 // show each element for mAnimSpeed updates
     GameObject.call(this, this.mPlatform);
 
-    var rigidShape = new RigidRectangle(this.getXform(), 20, 20);
+    var rigidShape = new RigidRectangle(this.getXform(), 10, 10);
     rigidShape.setMass(1);  // ensures no movements!
     rigidShape.setRestitution(0.5);
     rigidShape.setDrawBounds(true);

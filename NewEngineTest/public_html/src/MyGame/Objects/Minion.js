@@ -31,7 +31,7 @@ function Minion(spriteTexture, atX, atY,id) {
                                 // show each element for mAnimSpeed updates
     GameObject.call(this, this.mMinion);
 
-    var r = new RigidCircle(this.getXform(), 6.5);
+    var r = new RigidCircle(this.getXform(), 10);
     r.setMass(2);
     r.setAcceleration([0, 0]);
     r.setFriction(0);
