@@ -1,0 +1,67 @@
+/* 
+ * File:Circle.js
+ *      define a circle
+ *     
+ */
+
+
+
+
+/* global RigidShape */
+
+var Circle = function (center, radius, mass, friction, restitution) {
+    RigidShape.call(this,center, mass, friction, restitution);
+    this.mType = "Circle";
+
+    this.mRadius = radius;
+
+    //The start point of line in circle
+    this.mStartpoint = new Vec2(center.x, center.y - radius);
+
+
+    //Inertia=mass * radius^2
+    //12 is a constant value that can be changed
+    this.mInertia = this.mMass * (this.mRadius * this.mRadius) / 12;
+
+    //change mass into 1/mass
+    if (this.mMass !== 0)
+    {
+        this.mMass = 1 / this.mMass;
+        this.mInertia = 1 / this.mInertia;
+    }
+
+};
+
+   var prototype = Object.create(RigidShape.prototype);
+   prototype.constructor = Circle;
+    Circle.prototype = prototype;
+
+
+Circle.prototype.move = function (s) {
+    this.mStartpoint = this.mStartpoint.add(s);
+    this.mCenter = this.mCenter.add(s);
+    return this;
+};
+
+Circle.prototype.draw = function (context) {
+    
+    context.beginPath();
+
+    //draw a circle
+    context.arc(this.mCenter.x, this.mCenter.y, this.mRadius, 0, Math.PI * 2, true);
+
+    //draw a line from start point toward center
+    context.moveTo(this.mStartpoint.x, this.mStartpoint.y);
+    context.lineTo(this.mCenter.x, this.mCenter.y);
+
+    context.closePath();
+    context.lineWidth = 2.0;
+    context.stroke();
+};
+
+//rotate angle in counterclockwise
+Circle.prototype.rotate = function (angle) {
+    this.mAngle += angle;
+    this.mStartpoint = this.mStartpoint.rotate(this.mCenter, angle);
+    return this;
+};
