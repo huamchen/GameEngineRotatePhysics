@@ -15,7 +15,7 @@ and open the template in the editor.
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onkeydown="return control(event);" 
+    <body onkeydown="return userControl(event);" 
           onload="
             var game = new MyGame();
             gEngine.Core.initializeEngineCore()">
@@ -45,11 +45,11 @@ and open the template in the editor.
         <script type="text/javascript" src="RigidBody/Circle_collision.js"></script>  
         <script type="text/javascript" src="RigidBody/Rectangle_collision.js"></script>    
         
-        <script type="text/javascript" src="EngineCore/Control.js"></script>
         <script type="text/javascript" src="EngineCore/Physics.js"></script>
         <script type="text/javascript" src="EngineCore/Core.js"></script>
 
         <script type="text/javascript" src="MyGame.js"></script>
+        <script type="text/javascript" src="UserControl.js"></script>
 
     </body>
 </html>
