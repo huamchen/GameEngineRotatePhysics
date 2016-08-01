@@ -7,7 +7,7 @@
 /* global mAllObject, gEngine */
 
 
-function control(event)
+function userControl(event)
 {
     var keycode;
     var width = gEngine.Core.mWidth;

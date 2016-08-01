@@ -8,25 +8,33 @@ and open the template in the editor.
     <head>   
         <style type="text/css">
             body{ margin:0; padding:0;}
-            .Left{ float:left; }
-
         </style>
         <title>PhysicsEngine</title>
+        <link rel ="icon" type ="image/x-icon" href="./favicon.jpg">
+        
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body onkeydown="return control(event);" 
+    <body onkeydown="return userControl(event);" 
           onload="
             var game = new MyGame();
             gEngine.Core.initializeEngineCore()">
-        <div class="Left">
-            <canvas id="canvas"></canvas>    
-        </div>
-        <p id="objectId" ></p>
-        <p id="center"></p>
-        <p id="angle"></p>
-
-
+        
+        <table style="padding: 2px">
+            <tr>
+                <td> 
+                    <div>
+                        <canvas id="canvas"></canvas>    
+                    </div>
+                </td>
+                <td>
+                    <div id="uiEchoString">  </div>
+                </td>
+            </tr>
+        </table>
+        
+        
+        
         
         <script type="text/javascript" src="Lib/Vec2.js"></script>
 
@@ -36,10 +44,10 @@ and open the template in the editor.
         <script type="text/javascript" src="RigidBody/Rectangle.js"></script>     
 
         
-        <script type="text/javascript" src="EngineCore/Control.js"></script>
         <script type="text/javascript" src="EngineCore/Core.js"></script>
 
         <script type="text/javascript" src="MyGame.js"></script>
+        <script type="text/javascript" src="UserControl.js"></script>
 
     </body>
 </html>

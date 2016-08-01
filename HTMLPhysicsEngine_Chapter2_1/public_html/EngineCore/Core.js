@@ -28,21 +28,30 @@ gEngine.Core = (function () {
 
 
 
-    var loop = function () {
+    var runGameLoop = function () {
         requestAnimationFrame(function () {
-            loop();
+            runGameLoop();
         });
 
-        uiProperties();
+        updateUIEcho();
         draw();
     };
 
 
-    var uiProperties = function () {
+    var updateUIEcho = function () {
 
-        document.getElementById("objectId").innerHTML = "ObjectId: " + gObjectNum;
-        document.getElementById("center").innerHTML = "Center: " + mAllObject[gObjectNum].mCenter.x + "," + mAllObject[gObjectNum].mCenter.y;
-        document.getElementById("angle").innerHTML = "Angle: " + mAllObject[gObjectNum].mAngle;
+        document.getElementById("uiEchoString").innerHTML = 
+                "<p><b>Selected Object:</b>:</p>" +
+                "<ul style=\"margin:-10px\">" +
+                    "<li>Id: " + gObjectNum + "</li>" +
+                    "<li>Center: " + mAllObject[gObjectNum].mCenter.x.toPrecision(3) + "," + mAllObject[gObjectNum].mCenter.y.toPrecision(3) + "</li>"  + 
+                  "</ul> <hr>" +
+                "<p><b>Control</b>: of selected object</p>" +
+                "<ul style=\"margin:-10px\">" +
+                    "<li><b>Num</b> or <b>Up/Down Arrow</b>: Select Object</li>" +
+                "</ul> <hr>" +
+                "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
+                "<hr>";
  
     };
     var draw = function () {
@@ -58,7 +67,7 @@ gEngine.Core = (function () {
 
 
     var initializeEngineCore = function () {
-        loop();
+        runGameLoop();
     };
     var mPublic = {
         initializeEngineCore: initializeEngineCore,
