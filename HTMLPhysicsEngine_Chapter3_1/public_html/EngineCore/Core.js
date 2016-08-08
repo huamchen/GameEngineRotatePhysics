@@ -24,8 +24,6 @@ gEngine.Core = (function () {
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
 
-    var mGravity = new Vec2(0, 150);
-    
     var mCurrentTime,
             mElapsedTime,
             mPreviousTime = Date.now(),
@@ -57,6 +55,7 @@ gEngine.Core = (function () {
             gEngine.Physics.collision();
             update();
         }
+
     };
 
     var updateUIEcho = function () {
@@ -68,18 +67,12 @@ gEngine.Core = (function () {
                     "<li>Angle: " + mAllObject[gObjectNum].mAngle.toPrecision(3) + "</li>"  +
                     "<li>Velocity: " + mAllObject[gObjectNum].mVelocity.x.toPrecision(3) + "," + mAllObject[gObjectNum].mVelocity.y.toPrecision(3) + "</li>"  +
                     "<li>AngluarVelocity: " + mAllObject[gObjectNum].mAngularVelocity.toPrecision(3) + "</li>"  +
-                    "<li>Mass: " + 1 / mAllObject[gObjectNum].mInvMass.toPrecision(3) + "</li>"  +
-                    "<li>Friction: " + mAllObject[gObjectNum].mFriction.toPrecision(3) + "</li>"  +
-                    "<li>Restitution: " + mAllObject[gObjectNum].mRestitution.toPrecision(3) + "</li>"  +
                 "</ul> <hr>" +
                 "<p><b>Control</b>: of selected object</p>" +
                 "<ul style=\"margin:-10px\">" +
                     "<li><b>Num</b> or <b>Up/Down Arrow</b>: Select Object</li>" +
                     "<li><b>WASD</b> + <b>QE</b>: Position [Move + Rotate]</li>" +
                     "<li><b>IJKL</b> + <b>UO</b>: Velocities [Linear + Angular]</li>" +
-                    "<li><b>Z/X</b>: Mass [Decrease/Increase]</li>" +
-                    "<li><b>C/V</b>: Frictrion [Decrease/Increase]</li>" +
-                    "<li><b>B/N</b>: Restitution [Decrease/Increase]</li>" +
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<p><b>H</b>: Excite all objects</p>" +
@@ -111,7 +104,6 @@ gEngine.Core = (function () {
         mWidth: mWidth,
         mHeight: mHeight,
         mContext: mContext,
-        mGravity: mGravity,
         mUpdateIntervalInSeconds:mUpdateIntervalInSeconds
     };
     return mPublic;
