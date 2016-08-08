@@ -11,19 +11,10 @@
 function RigidShape(center) {
 
     this.mCenter = center;
-
-
     //angle
     this.mAngle = 0;
-
-
     gEngine.Core.mAllObject.push(this);
 }
-
-
-
-
-
 
 RigidShape.prototype.update = function () {
     if (this.mCenter.y < gEngine.Core.mHeight && this.mFix !== 0)

@@ -40,11 +40,9 @@ function userControl(event)
     if (keycode === 70) {
         //f
         var r1 = new Rectangle(new Vec2(Math.random()*width*0.8, Math.random()*height*0.8), Math.random() * 30+10, Math.random() * 30+10);
-
     }
     if (keycode === 71) {
         //g
         var r1 = new Circle(new Vec2(Math.random()*width*0.8, Math.random()*height*0.8), Math.random() * 10 + 20);
-
     }
 }

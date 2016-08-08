@@ -24,17 +24,11 @@ gEngine.Core = (function () {
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
 
-
-
-
-
-
-    
     var mPublic = {
         mWidth: mWidth,
         mHeight: mHeight,
         mContext: mContext
     };
-
+    
     return mPublic;
 }());

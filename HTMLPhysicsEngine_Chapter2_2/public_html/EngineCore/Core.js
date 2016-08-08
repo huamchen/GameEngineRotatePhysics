@@ -24,10 +24,6 @@ gEngine.Core = (function () {
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
 
-
-
-
-
     var mCurrentTime,
             mElapsedTime,
             mPreviousTime = Date.now(),
@@ -37,8 +33,6 @@ gEngine.Core = (function () {
     var mUpdateIntervalInSeconds = kFrameTime;
     var kMPF = 1000 * kFrameTime; // Milliseconds per frame.
     var mAllObject = [];
-
-
 
     var runGameLoop = function () {
         requestAnimationFrame(function () {
@@ -62,10 +56,7 @@ gEngine.Core = (function () {
         draw();
     };
 
-
     var updateUIEcho = function () {
-
- 
         document.getElementById("uiEchoString").innerHTML = 
                 "<p><b>Selected Object:</b>:</p>" +
                 "<ul style=\"margin:-10px\">" +
@@ -80,6 +71,7 @@ gEngine.Core = (function () {
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<p><b>H</b>: Fix object</p>" +
+                "<p><b>C</b>: Delete all objects</p>" +
                 "<hr>";
     };
     var draw = function () {
@@ -110,7 +102,6 @@ gEngine.Core = (function () {
         mHeight: mHeight,
         mContext: mContext
     };
-
 
     return mPublic;
 }());

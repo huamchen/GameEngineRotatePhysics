@@ -17,29 +17,20 @@ gEngine.Core = (function () {
     var mCanvas,
             mContext,
             mWidth = 800,
-            mHeight = 450;
-            
+            mHeight = 450;           
     mCanvas = document.getElementById('canvas');
     mContext = mCanvas.getContext('2d');
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
-
     var mAllObject = [];
-
-
-
     var runGameLoop = function () {
         requestAnimationFrame(function () {
             runGameLoop();
-        });
-
+        })
         updateUIEcho();
         draw();
     };
-
-
     var updateUIEcho = function () {
-
         document.getElementById("uiEchoString").innerHTML = 
                 "<p><b>Selected Object:</b>:</p>" +
                 "<ul style=\"margin:-10px\">" +
@@ -52,7 +43,6 @@ gEngine.Core = (function () {
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<hr>";
- 
     };
     var draw = function () {
         mContext.clearRect(0, 0, mWidth, mHeight);
@@ -64,8 +54,6 @@ gEngine.Core = (function () {
             mAllObject[i].draw(mContext);
         }
     };
-
-
     var initializeEngineCore = function () {
         runGameLoop();
     };
@@ -76,7 +64,5 @@ gEngine.Core = (function () {
         mHeight: mHeight,
         mContext: mContext
     };
-
-
     return mPublic;
 }());

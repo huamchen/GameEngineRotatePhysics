@@ -13,13 +13,8 @@ var Rectangle = function (center, width, height, fix) {
     RigidShape.call(this, center);
     this.mType = "Rectangle";
     this.mFix=fix;
-
     this.mWidth = width;
     this.mHeight = height;
-
-
-
-
     this.mVertex = [];
     this.mFaceNormal = [];
 
@@ -39,8 +34,6 @@ var Rectangle = function (center, width, height, fix) {
     this.mFaceNormal[2] = this.mFaceNormal[2].normalize();
     this.mFaceNormal[3] = this.mVertex[0].subtract(this.mVertex[1]);
     this.mFaceNormal[3] = this.mFaceNormal[3].normalize();
-
-
 
 };
 
@@ -77,7 +70,6 @@ Rectangle.prototype.move = function (v) {
 };
 
 Rectangle.prototype.draw = function (context) {
-
     context.save();
 
     context.translate(this.mVertex[0].x, this.mVertex[0].y);

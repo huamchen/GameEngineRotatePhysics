@@ -17,15 +17,11 @@ var Circle = function (center, radius) {
 
     //The start point of line in circle
     this.mStartpoint = new Vec2(center.x, center.y - radius);
-
-
-
 };
 
 var prototype = Object.create(RigidShape.prototype);
 prototype.constructor = Circle;
 Circle.prototype = prototype;
-
 
 Circle.prototype.draw = function (context) {
 
@@ -37,7 +33,6 @@ Circle.prototype.draw = function (context) {
     //draw a line from start point toward center
     context.moveTo(this.mStartpoint.x, this.mStartpoint.y);
     context.lineTo(this.mCenter.x, this.mCenter.y);
-
     context.closePath();
     context.stroke();
 };

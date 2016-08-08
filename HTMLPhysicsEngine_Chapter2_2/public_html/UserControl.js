@@ -66,7 +66,6 @@ function userControl(event)
     if (keycode === 70) {
         //f
         var r1 = new Rectangle(new Vec2(gEngine.Core.mAllObject[gObjectNum].mCenter.x, gEngine.Core.mAllObject[gObjectNum].mCenter.y), Math.random() * 30+10, Math.random() * 30+10);
-
     }
     if (keycode === 71) {
         //g
@@ -79,6 +78,8 @@ function userControl(event)
             gEngine.Core.mAllObject[gObjectNum].mFix=1;
         else gEngine.Core.mAllObject[gObjectNum].mFix=0;
     }
-
-
+    if (keycode === 67) {
+        //C
+        gEngine.Core.mAllObject.splice(5,gEngine.Core.mAllObject.length);
+    }
 }
