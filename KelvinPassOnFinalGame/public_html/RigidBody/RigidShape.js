@@ -11,15 +11,12 @@
 function RigidShape(center,mass,friction,restitution) {
 
     this.mCenter = center;
-
     this.mInertia = 0;
-
     if (mass !== undefined)
         this.mInvMass = mass;
     else
         this.mInvMass = 1;
     
-
     if (friction !== undefined)
        this.mFriction = friction; 
     else
@@ -29,7 +26,6 @@ function RigidShape(center,mass,friction,restitution) {
         this.mRestitution = restitution;
     else
         this.mRestitution = 0.2;
-
 
     this.mVelocity = new Vec2(0, 0);
     
@@ -59,8 +55,7 @@ RigidShape.prototype.updateMass = function(delta) {
     else
         mass = 0;
     
-    mass += delta;   
-    
+    mass += delta;       
     if (mass <= 0) {
         this.mInvMass = 0;
         this.mVelocity = new Vec2(0, 0);

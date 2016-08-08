@@ -4,19 +4,14 @@
  * and open the template in the editor.
  */
 
-
-
 /* global RigidShape */
 
 var Rectangle = function (center, width, height, mass, friction, restitution) {
 
     RigidShape.call(this, center, mass, friction, restitution);
     this.mType = "Rectangle";
-
-
     this.mWidth = width;
     this.mHeight = height;
-
     this.mVertex = [];
     this.mFaceNormal = [];
 
@@ -73,7 +68,6 @@ Rectangle.prototype.move = function (v) {
 };
 
 Rectangle.prototype.draw = function (context) {
-
     context.save();
 
     context.translate(this.mVertex[0].x, this.mVertex[0].y);
@@ -92,5 +86,4 @@ Rectangle.prototype.updateInertia = function() {
         this.mInertia = (1/this.mInvMass) * (this.mWidth * this.mWidth + this.mHeight * this.mHeight)/12;
         this.mInertia = 1 / this.mInertia;
     }
-
 };

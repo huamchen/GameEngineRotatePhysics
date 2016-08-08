@@ -78,8 +78,8 @@ function userControl(event)
             gEngine.Core.mAllObject[gObjectNum].mFix=1;
         else gEngine.Core.mAllObject[gObjectNum].mFix=0;
     }
-    if (keycode === 67) {
-        //C
+    if (keycode === 82) {
+        //R
         gEngine.Core.mAllObject.splice(5,gEngine.Core.mAllObject.length);
     }
 }

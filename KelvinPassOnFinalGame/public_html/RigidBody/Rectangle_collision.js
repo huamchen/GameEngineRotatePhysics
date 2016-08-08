@@ -35,7 +35,6 @@ Rectangle.prototype.getSupport = function (dir) {
     {
         var v = this.mVertex[i];
         projection = v.dot(dir);
-
         if (projection > bestProjection)
         {
             bestVertex = v;

@@ -4,27 +4,20 @@
  *     
  */
 
-
-
-
 /* global RigidShape */
 
 var Circle = function (center, radius, mass, friction, restitution) {
     RigidShape.call(this, center, mass, friction, restitution);
     this.mType = "Circle";
-
     this.mRadius = radius;
-
     //The start point of line in circle
-    this.mStartpoint = new Vec2(center.x, center.y - radius);
-    
+    this.mStartpoint = new Vec2(center.x, center.y - radius); 
     this.updateInertia();
 };
 
 var prototype = Object.create(RigidShape.prototype);
 prototype.constructor = Circle;
 Circle.prototype = prototype;
-
 
 Circle.prototype.move = function (s) {
     this.mStartpoint = this.mStartpoint.add(s);
@@ -33,7 +26,6 @@ Circle.prototype.move = function (s) {
 };
 
 Circle.prototype.draw = function (context) {
-
     context.beginPath();
 
     //draw a circle

@@ -71,7 +71,7 @@ gEngine.Core = (function () {
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<p><b>H</b>: Fix object</p>" +
-                "<p><b>C</b>: Delete all objects</p>" +
+                "<p><b>R</b>: Reset System</p>" +
                 "<hr>";
     };
     var draw = function () {

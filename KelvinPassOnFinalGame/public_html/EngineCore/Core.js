@@ -24,10 +24,8 @@ gEngine.Core = (function () {
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
 
-
     var mGravity = new Vec2(0, 150);
-
-
+    
     var mCurrentTime,
             mElapsedTime,
             mPreviousTime = Date.now(),
@@ -37,8 +35,6 @@ gEngine.Core = (function () {
     var mUpdateIntervalInSeconds = kFrameTime;
     var kMPF = 1000 * kFrameTime; // Milliseconds per frame.
     var mAllObject = [];
-
-
 
     var runGameLoop = function () {
         requestAnimationFrame(function () {
@@ -63,9 +59,7 @@ gEngine.Core = (function () {
         draw();
     };
 
-
     var updateUIEcho = function () {
-
         document.getElementById("uiEchoString").innerHTML = 
                 "<p><b>Selected Object:</b>:</p>" +
                 "<ul style=\"margin:-10px\">" +
@@ -89,10 +83,9 @@ gEngine.Core = (function () {
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<p><b>H</b>: Excite all objects</p>" +
-                "<hr>";
-        
+                "<p><b>R</b>: Reset System</p>" +
+                "<hr>";     
     };
-    
     var draw = function () {
         mContext.clearRect(0, 0, mWidth, mHeight);
         var i;
@@ -103,18 +96,15 @@ gEngine.Core = (function () {
             mAllObject[i].draw(mContext);
         }
     };
-
     var update = function () {
         var i;
         for (i = 0; i < mAllObject.length; i++) {
             mAllObject[i].update(mContext);
         }
     };
-
     var initializeEngineCore = function () {
         runGameLoop();
-    };
-    
+    };    
     var mPublic = {
         initializeEngineCore: initializeEngineCore,
         mAllObject: mAllObject,
@@ -124,7 +114,5 @@ gEngine.Core = (function () {
         mGravity: mGravity,
         mUpdateIntervalInSeconds:mUpdateIntervalInSeconds
     };
-
-
     return mPublic;
 }());

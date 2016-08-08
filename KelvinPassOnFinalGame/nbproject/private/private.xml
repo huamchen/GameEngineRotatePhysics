@@ -2,14 +2,10 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/E:/workspace/HTMLPhysicsEngine/public_html/MyGame.js</file>
-            <file>file:/E:/workspace/HTMLPhysicsEngine/public_html/EngineCore/Physics.js</file>
-            <file>file:/E:/workspace/HTMLPhysicsEngine/public_html/index.html</file>
-            <file>file:/E:/workspace/HTMLPhysicsEngine/public_html/RigidBody/RigidShape.js</file>
-            <file>file:/E:/workspace/HTMLPhysicsEngine/public_html/RigidBody/Rectangle.js</file>
-            <file>file:/E:/workspace/HTMLPhysicsEngine/public_html/EngineCore/Core.js</file>
-        </group>
         <group name="AllBookProjects"/>
+        <group>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Circle_collision.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Rectangle_collision.js</file>
+        </group>
     </open-files>
 </project-private>

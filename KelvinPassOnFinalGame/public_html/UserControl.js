@@ -90,8 +90,6 @@ function userControl(event)
         gEngine.Core.mAllObject[gObjectNum].mAngularVelocity += 0.1;
     }
 
-
-
     if (keycode === 90) {
         //Z
         gEngine.Core.mAllObject[gObjectNum].updateMass(-1);
@@ -107,7 +105,7 @@ function userControl(event)
     }
     if (keycode === 86) {
         //V
-
+        
         gEngine.Core.mAllObject[gObjectNum].mFriction += 0.01;
     }
     if (keycode === 66) {
@@ -120,7 +118,6 @@ function userControl(event)
 
         gEngine.Core.mAllObject[gObjectNum].mRestitution += 0.01;
     }
-
 
     if (keycode === 70) {
         //f
@@ -141,5 +138,8 @@ function userControl(event)
                 gEngine.Core.mAllObject[i].mVelocity = new Vec2(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
         }
     }
-
+    if (keycode === 82) {
+        //R
+        gEngine.Core.mAllObject.splice(7,gEngine.Core.mAllObject.length);
+    }
 }

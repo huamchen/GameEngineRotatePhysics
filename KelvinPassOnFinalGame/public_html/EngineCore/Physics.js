@@ -12,7 +12,6 @@ gEngine.Physics = (function () {
     var mRelaxationCount = 15;                  // number of relaxation iteration
     var mRelaxationOffset = 1 / mRelaxationCount; // porportion to apply when scaling friction
     var mPosCorrectionRate = 0.8;               // percentage of separation to project objects
-
     var collision = function () {
         var i, j, k;
         for (k = 0; k < mRelaxationCount; k++) {
@@ -51,12 +50,9 @@ gEngine.Physics = (function () {
       
         if ((s1.mInvMass === 0) && (s2.mInvMass === 0))
             return;
-       
-       
+             
         //  correct positions
         positionalCorrection(s1, s2, collisionInfo);
-
-
 
         var n = collisionInfo.getNormal();
         //r is vector from center of object to collision point
@@ -105,7 +101,6 @@ gEngine.Physics = (function () {
         s1.mAngularVelocity -= RcrossN1 * j * s1.mInertia;
         s2.mAngularVelocity += RcrossN2 * j * s2.mInertia;
 
-
         var tangent = relativeVelocity.subtract(n.scale(relativeVelocity.dot(n)));
 
         //relativeVelocity.dot(tangent) should less than 0
@@ -128,8 +123,6 @@ gEngine.Physics = (function () {
         s2.mVelocity = s2.mVelocity.add(impulse.scale(s2.mInvMass));
         s1.mAngularVelocity -= RcrossN1 * j2 * s1.mInertia;
         s2.mAngularVelocity += RcrossN2 * j2 * s2.mInertia;
-
-
     };
 
     var drawCollisionInfo = function (collisionInfo,context) {
@@ -142,11 +135,9 @@ gEngine.Physics = (function () {
         context.stroke();
     };
 
-
     var mPublic = {
         collision:collision
     };
-
 
     return mPublic;
 }());
