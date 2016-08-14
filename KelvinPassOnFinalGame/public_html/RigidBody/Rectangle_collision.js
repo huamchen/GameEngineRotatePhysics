@@ -8,10 +8,12 @@
 
 Rectangle.prototype.collisionTest = function (otherShape, collisionInfo) {
     var status = false;
-    if (otherShape.mType === "Circle")
-        status = this.collidedRectCirc(otherShape, collisionInfo);
-    else
-        status = this.collidedRectRect(this, otherShape, collisionInfo);
+    if (this.boundTest(otherShape)) {
+        if (otherShape.mType === "Circle")
+            status = this.collidedRectCirc(otherShape, collisionInfo);
+        else
+            status = this.collidedRectRect(this, otherShape, collisionInfo);
+    }
     return status;
 };
 
@@ -90,7 +92,7 @@ Rectangle.prototype.findAxisLeastPenetration = function (otherRect, collisionInf
     }
     else
     {
-        var bestVec=this.mFaceNormal[bestIndex].scale(-bestDistance);
+        var bestVec = this.mFaceNormal[bestIndex].scale(-bestDistance);
         collisionInfo.setInfo(-bestDistance, this.mFaceNormal[bestIndex], supportPoint.add(bestVec));
     }
     return true;
@@ -119,7 +121,7 @@ Rectangle.prototype.collidedRectRect = function (r1, r2, collisionInfo) {
         //if both of rectangles are overlapping, choose the shorter normal as the normal       
         if (collisionInfoR1.getDepth() < collisionInfoR2.getDepth())
         {
-            var depthVec=collisionInfoR1.getNormal().scale(collisionInfoR1.getDepth());
+            var depthVec = collisionInfoR1.getNormal().scale(collisionInfoR1.getDepth());
             collisionInfo.setInfo(collisionInfoR1.getDepth(), collisionInfoR1.getNormal(), collisionInfoR1.mStart.subtract(depthVec));
         }
         else {
@@ -182,7 +184,7 @@ Rectangle.prototype.collidedRectCirc = function (otherCir, collisionInfo) {
                 return false;
 
             var normal = circ2Pos.subtract(this.mVertex[NearEdge]).normalize();
-            var radiusVec=normal.scale(-otherCir.mRadius);
+            var radiusVec = normal.scale(-otherCir.mRadius);
             collisionInfo.setInfo(otherCir.mRadius - dis, normal, circ2Pos.add(radiusVec));
         }
         else {
@@ -199,14 +201,14 @@ Rectangle.prototype.collidedRectCirc = function (otherCir, collisionInfo) {
                 if (dis > otherCir.mRadius)
                     return false;
                 var normal = circ2Pos.subtract(this.mVertex[(NearEdge + 1) % 4]).normalize();
-                var radiusVec=normal.scale(-otherCir.mRadius);
+                var radiusVec = normal.scale(-otherCir.mRadius);
                 collisionInfo.setInfo(otherCir.mRadius - dis, normal, circ2Pos.add(radiusVec));
             }
             else
             {
                 //the center of circle is in face region of face[NearEdge]
                 if (BestestNum < otherCir.mRadius) {
-                    var radiusVec=this.mFaceNormal[NearEdge].scale(otherCir.mRadius);
+                    var radiusVec = this.mFaceNormal[NearEdge].scale(otherCir.mRadius);
                     collisionInfo.setInfo(otherCir.mRadius - BestestNum, this.mFaceNormal[NearEdge], circ2Pos.subtract(radiusVec));
                 }
                 else {
@@ -217,7 +219,7 @@ Rectangle.prototype.collidedRectCirc = function (otherCir, collisionInfo) {
     }
     else {
         //the center of circle is inside of rectangle
-        var radiusVec=this.mFaceNormal[NearEdge].scale(otherCir.mRadius);
+        var radiusVec = this.mFaceNormal[NearEdge].scale(otherCir.mRadius);
         collisionInfo.setInfo(otherCir.mRadius - BestestNum, this.mFaceNormal[NearEdge], circ2Pos.subtract(radiusVec));
     }
     return true;
