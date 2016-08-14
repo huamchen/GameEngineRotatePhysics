@@ -141,5 +141,6 @@ function userControl(event)
     if (keycode === 82) {
         //R
         gEngine.Core.mAllObject.splice(7,gEngine.Core.mAllObject.length);
+        gObjectNum = 0;
     }
 }

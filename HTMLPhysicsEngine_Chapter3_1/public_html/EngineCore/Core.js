@@ -75,7 +75,6 @@ gEngine.Core = (function () {
                     "<li><b>IJKL</b> + <b>UO</b>: Velocities [Linear + Angular]</li>" +
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
-                "<p><b>H</b>: Excite all objects</p>" +
                 "<p><b>R</b>: Reset System</p>" +
                 "<hr>";     
     };

@@ -99,14 +99,6 @@ function userControl(event)
         var r1 = new Circle(new Vec2(gEngine.Core.mAllObject[gObjectNum].mCenter.x, gEngine.Core.mAllObject[gObjectNum].mCenter.y), Math.random() * 10 + 20, Math.random() * 30, Math.random(), Math.random());
     }
 
-    if (keycode === 72) {
-        //H
-        var i;
-        for (i = 0; i < gEngine.Core.mAllObject.length; i++) {
-            if (gEngine.Core.mAllObject[i].mInvMass !== 0)
-                gEngine.Core.mAllObject[i].mVelocity = new Vec2(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
-        }
-    }
     if (keycode === 82) {
         //R
         gEngine.Core.mAllObject.splice(5,gEngine.Core.mAllObject.length);
