@@ -12,6 +12,7 @@ var Rectangle = function (center, width, height, mass, friction, restitution) {
     this.mType = "Rectangle";
     this.mWidth = width;
     this.mHeight = height;
+    this.mBoundRadius=Math.sqrt(width*width+ height* height);
     this.mVertex = [];
     this.mFaceNormal = [];
 
