@@ -65,14 +65,11 @@ gEngine.Core = (function () {
                     "<li>Id: " + gObjectNum + "</li>" +
                     "<li>Center: " + mAllObject[gObjectNum].mCenter.x.toPrecision(3) + "," + mAllObject[gObjectNum].mCenter.y.toPrecision(3) + "</li>"  + 
                     "<li>Angle: " + mAllObject[gObjectNum].mAngle.toPrecision(3) + "</li>"  +
-                    "<li>Velocity: " + mAllObject[gObjectNum].mVelocity.x.toPrecision(3) + "," + mAllObject[gObjectNum].mVelocity.y.toPrecision(3) + "</li>"  +
-                    "<li>AngluarVelocity: " + mAllObject[gObjectNum].mAngularVelocity.toPrecision(3) + "</li>"  +
                 "</ul> <hr>" +
                 "<p><b>Control</b>: of selected object</p>" +
                 "<ul style=\"margin:-10px\">" +
                     "<li><b>Num</b> or <b>Up/Down Arrow</b>: Select Object</li>" +
                     "<li><b>WASD</b> + <b>QE</b>: Position [Move + Rotate]</li>" +
-                    "<li><b>IJKL</b> + <b>UO</b>: Velocities [Linear + Angular]</li>" +
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<p><b>R</b>: Reset System</p>" +

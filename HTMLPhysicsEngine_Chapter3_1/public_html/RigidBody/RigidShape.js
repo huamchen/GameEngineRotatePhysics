@@ -9,19 +9,10 @@
 /* global mAllObject, dt, gEngine */
 
 function RigidShape(center,mass,friction,restitution) {
-
     this.mCenter = center;
-    this.mVelocity = new Vec2(0, 0);
-    this.mAcceleration = new Vec2(0, 0);
 
     //angle
     this.mAngle = 0;
-
-    //negetive-- clockwise
-    //postive-- counterclockwise
-    this.mAngularVelocity = 0;
-
-    this.mAngularAcceleration = 0;
 
     gEngine.Core.mAllObject.push(this);
 }

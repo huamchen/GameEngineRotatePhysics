@@ -63,33 +63,7 @@ function userControl(event)
         gEngine.Core.mAllObject[gObjectNum].rotate(0.1);
     }
 
-    if (keycode === 73) {
-        //I
-        gEngine.Core.mAllObject[gObjectNum].mVelocity.y -= 1;
-    }
-    if (keycode === 75) {
-        // k
-        gEngine.Core.mAllObject[gObjectNum].mVelocity.y += 1;
-    }
-    if (keycode === 74) {
-        //j
-        gEngine.Core.mAllObject[gObjectNum].mVelocity.x -= 1;
-    }
-    if (keycode === 76) {
-        //l
-        gEngine.Core.mAllObject[gObjectNum].mVelocity.x += 1;
-    }
-    if (keycode === 85) {
-        //U
-
-        gEngine.Core.mAllObject[gObjectNum].mAngularVelocity -= 0.1;
-    }
-    if (keycode === 79) {
-        //O
-
-        gEngine.Core.mAllObject[gObjectNum].mAngularVelocity += 0.1;
-    }
-
+ 
     if (keycode === 70) {
         //f
         var r1 = new Rectangle(new Vec2(gEngine.Core.mAllObject[gObjectNum].mCenter.x, gEngine.Core.mAllObject[gObjectNum].mCenter.y), Math.random() * 30 + 10, Math.random() * 30 + 10, Math.random() * 30, Math.random(), Math.random());
@@ -102,5 +76,6 @@ function userControl(event)
     if (keycode === 82) {
         //R
         gEngine.Core.mAllObject.splice(5,gEngine.Core.mAllObject.length);
+        gObjectNum=0;
     }
 }
