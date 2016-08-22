@@ -4,8 +4,8 @@
  */
 /* global objectNum, context, mRelaxationCount, mAllObject, mPosCorrectionRate */
 
-var gEngine = gEngine || { };
-    // initialize the variable while ensuring it is not redefined
+var gEngine = gEngine || {};
+// initialize the variable while ensuring it is not redefined
 
 gEngine.Physics = (function () {
 
@@ -18,17 +18,19 @@ gEngine.Physics = (function () {
             for (i = 0; i < gEngine.Core.mAllObject.length; i++) {
                 for (j = i + 1; j < gEngine.Core.mAllObject.length; j++)
                 {
-                    var collisionInfo = new CollisionInfo();
-                    if (gEngine.Core.mAllObject[i].collisionTest(gEngine.Core.mAllObject[j], collisionInfo))
-                    {
-                        //make sure the normal is always from object[i] to object[j]
-                        if (collisionInfo.getNormal().dot(gEngine.Core.mAllObject[j].mCenter.subtract(gEngine.Core.mAllObject[i].mCenter)) < 0)
-                            collisionInfo.changeDir();
+                    if (gEngine.Core.mAllObject[i].boundTest(gEngine.Core.mAllObject[j])) {
+                        var collisionInfo = new CollisionInfo();
+                        if (gEngine.Core.mAllObject[i].collisionTest(gEngine.Core.mAllObject[j], collisionInfo))
+                        {
+                            //make sure the normal is always from object[i] to object[j]
+                            if (collisionInfo.getNormal().dot(gEngine.Core.mAllObject[j].mCenter.subtract(gEngine.Core.mAllObject[i].mCenter)) < 0)
+                                collisionInfo.changeDir();
 
-                        //draw collision info (a black line that shows normal)
-                        drawCollisionInfo(collisionInfo,gEngine.Core.mContext);
+                            //draw collision info (a black line that shows normal)
+                            drawCollisionInfo(collisionInfo, gEngine.Core.mContext);
 
-                        resolveCollision(gEngine.Core.mAllObject[i], gEngine.Core.mAllObject[j], collisionInfo);
+                            resolveCollision(gEngine.Core.mAllObject[i], gEngine.Core.mAllObject[j], collisionInfo);
+                        }
                     }
                 }
             }
@@ -47,10 +49,10 @@ gEngine.Physics = (function () {
     };
 
     var resolveCollision = function (s1, s2, collisionInfo) {
-      
+
         if ((s1.mInvMass === 0) && (s2.mInvMass === 0))
             return;
-             
+
         //  correct positions
         positionalCorrection(s1, s2, collisionInfo);
 
@@ -125,7 +127,7 @@ gEngine.Physics = (function () {
         s2.mAngularVelocity += RcrossN2 * j2 * s2.mInertia;
     };
 
-    var drawCollisionInfo = function (collisionInfo,context) {
+    var drawCollisionInfo = function (collisionInfo, context) {
         context.beginPath();
         context.moveTo(collisionInfo.mStart.x, collisionInfo.mStart.y);
         context.lineTo(collisionInfo.mEnd.x, collisionInfo.mEnd.y);
@@ -135,7 +137,7 @@ gEngine.Physics = (function () {
     };
 
     var mPublic = {
-        collision:collision
+        collision: collision
     };
 
     return mPublic;

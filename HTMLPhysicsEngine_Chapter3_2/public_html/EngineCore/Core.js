@@ -24,6 +24,8 @@ gEngine.Core = (function () {
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
 
+    var mGravity = new Vec2(0, 150);
+    
     var mCurrentTime,
             mElapsedTime,
             mPreviousTime = Date.now(),
@@ -55,7 +57,6 @@ gEngine.Core = (function () {
             gEngine.Physics.collision();
             update();
         }
-
     };
 
     var updateUIEcho = function () {
@@ -100,6 +101,7 @@ gEngine.Core = (function () {
         mWidth: mWidth,
         mHeight: mHeight,
         mContext: mContext,
+        mGravity: mGravity,
         mUpdateIntervalInSeconds:mUpdateIntervalInSeconds
     };
     return mPublic;

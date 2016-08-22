@@ -8,12 +8,10 @@
 
 Circle.prototype.collisionTest = function (otherShape, collisionInfo) {
     var status = false;
-    if (this.boundTest(otherShape)) {
-        if (otherShape.mType === "Circle")
-            status = this.collidedCircCirc(this, otherShape, collisionInfo);
-        else
-            status = otherShape.collidedRectCirc(this, collisionInfo);
-    }
+    if (otherShape.mType === "Circle")
+        status = this.collidedCircCirc(this, otherShape, collisionInfo);
+    else
+        status = otherShape.collidedRectCirc(this, collisionInfo);
     return status;
 };
 

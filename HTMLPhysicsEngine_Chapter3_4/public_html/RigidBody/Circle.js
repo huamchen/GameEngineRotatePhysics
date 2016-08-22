@@ -13,6 +13,7 @@ var Circle = function (center, radius, mass, friction, restitution) {
     this.mBoundRadius=radius;
     //The start point of line in circle
     this.mStartpoint = new Vec2(center.x, center.y - radius); 
+
 };
 
 var prototype = Object.create(RigidShape.prototype);

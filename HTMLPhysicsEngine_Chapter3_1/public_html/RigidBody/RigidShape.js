@@ -13,6 +13,8 @@ function RigidShape(center,mass,friction,restitution) {
 
     //angle
     this.mAngle = 0;
+    
+    this.mBoundRadius=0;
 
     gEngine.Core.mAllObject.push(this);
 }
@@ -20,4 +22,15 @@ function RigidShape(center,mass,friction,restitution) {
 
 RigidShape.prototype.update = function () {
 
+};
+
+RigidShape.prototype.boundTest = function (otherShape) {
+    var vFrom1to2 = otherShape.mCenter.subtract(this.mCenter);
+    var rSum = this.mBoundRadius + otherShape.mBoundRadius;
+    var dist = vFrom1to2.length();
+    if (dist > rSum) {
+        //not overlapping
+        return false;
+    }
+    return true;
 };

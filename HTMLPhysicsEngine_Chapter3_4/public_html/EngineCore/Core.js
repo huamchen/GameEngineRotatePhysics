@@ -24,6 +24,8 @@ gEngine.Core = (function () {
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
 
+    var mGravity = new Vec2(0, 150);
+    
     var mCurrentTime,
             mElapsedTime,
             mPreviousTime = Date.now(),
@@ -51,11 +53,10 @@ gEngine.Core = (function () {
         //      Update only every Milliseconds per frame.
         //      If lag larger then update frames, update until caught up.
         while (mLagTime >= kMPF) {
-            mLagTime -= kMPF;           
-            update();
+            mLagTime -= kMPF;
             gEngine.Physics.collision();
+            update();
         }
-
     };
 
     var updateUIEcho = function () {
@@ -100,6 +101,7 @@ gEngine.Core = (function () {
         mWidth: mWidth,
         mHeight: mHeight,
         mContext: mContext,
+        mGravity: mGravity,
         mUpdateIntervalInSeconds:mUpdateIntervalInSeconds
     };
     return mPublic;

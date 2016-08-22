@@ -15,36 +15,26 @@ gEngine.Physics = (function () {
     var collision = function () {
         var i, j, k;
         for (k = 0; k < mRelaxationCount; k++) {
-            for (i = 0; i < gEngine.Core.mAllObject.length; i++) {
+            //specifically, i start from 5
+            for (i = 5; i < gEngine.Core.mAllObject.length; i++) {
                 for (j = i + 1; j < gEngine.Core.mAllObject.length; j++)
                 {
-                    var collisionInfo = new CollisionInfo();
-                    if (gEngine.Core.mAllObject[i].collisionTest(gEngine.Core.mAllObject[j], collisionInfo))
-                    {
-                        //make sure the normal is always from object[i] to object[j]
-                        if (collisionInfo.getNormal().dot(gEngine.Core.mAllObject[j].mCenter.subtract(gEngine.Core.mAllObject[i].mCenter)) < 0)
-                            collisionInfo.changeDir();
-
-                        //draw collision info (a black line that shows normal)
-                        drawCollisionInfo(collisionInfo,gEngine.Core.mContext);
+                    if (gEngine.Core.mAllObject[i].boundTest(gEngine.Core.mAllObject[j])) {
+                            gEngine.Core.mContext.strokeStyle = 'green';
+                            gEngine.Core.mAllObject[i].draw(gEngine.Core.mContext);
+                            gEngine.Core.mAllObject[j].draw(gEngine.Core.mContext);
                     }
                 }
             }
         }
     };
 
-    var drawCollisionInfo = function (collisionInfo,context) {
-        context.beginPath();
-        context.moveTo(collisionInfo.mStart.x, collisionInfo.mStart.y);
-        context.lineTo(collisionInfo.mEnd.x, collisionInfo.mEnd.y);
-        context.closePath();
-        context.strokeStyle = "black";
-        context.stroke();
-    };
 
     var mPublic = {
         collision:collision
     };
+    
+    
 
     return mPublic;
 }());

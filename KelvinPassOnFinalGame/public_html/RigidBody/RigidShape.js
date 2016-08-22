@@ -92,7 +92,7 @@ RigidShape.prototype.boundTest = function (otherShape) {
     var vFrom1to2 = otherShape.mCenter.subtract(this.mCenter);
     var rSum = this.mBoundRadius + otherShape.mBoundRadius;
     var dist = vFrom1to2.length();
-    if (dist > Math.sqrt(rSum * rSum)) {
+    if (dist > rSum) {
         //not overlapping
         return false;
     }

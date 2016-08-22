@@ -6,15 +6,11 @@
         <group>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Circle_collision.js</file>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Circle.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/Lib/CollisionInfo.js</file>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/RigidShape.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Rectangle.js</file>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/EngineCore/Physics.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Rectangle_collision.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Rectangle.js</file>
             <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/EngineCore/Core.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/MyGame.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/Lib/Vec2.js</file>
-            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/UserControl.js</file>
+            <file>file:/E:/homework/GameEngineRotatePhysics/GameEngineRotatePhysics/KelvinPassOnFinalGame/public_html/RigidBody/Rectangle_collision.js</file>
         </group>
     </open-files>
 </project-private>
