@@ -8,7 +8,7 @@
 
 /* global mAllObject, dt, gEngine */
 
-function RigidShape(center,mass,friction,restitution) {
+function RigidShape(center, mass, friction, restitution) {
 
     this.mCenter = center;
     this.mInertia = 0;
@@ -16,9 +16,9 @@ function RigidShape(center,mass,friction,restitution) {
         this.mInvMass = mass;
     else
         this.mInvMass = 1;
-    
+
     if (friction !== undefined)
-       this.mFriction = friction; 
+        this.mFriction = friction;
     else
         this.mFriction = 0.8;
 
@@ -28,9 +28,9 @@ function RigidShape(center,mass,friction,restitution) {
         this.mRestitution = 0.2;
 
     this.mVelocity = new Vec2(0, 0);
-    
+
     if (this.mInvMass !== 0) {
-        this.mInvMass = 1/this.mInvMass;
+        this.mInvMass = 1 / this.mInvMass;
         this.mAcceleration = gEngine.Core.mGravity;
     } else {
         this.mAcceleration = new Vec2(0, 0);
@@ -44,20 +44,20 @@ function RigidShape(center,mass,friction,restitution) {
     this.mAngularVelocity = 0;
 
     this.mAngularAcceleration = 0;
-    
-    this.mBoundRadius=0;
+
+    this.mBoundRadius = 0;
 
     gEngine.Core.mAllObject.push(this);
 }
 
-RigidShape.prototype.updateMass = function(delta) {
+RigidShape.prototype.updateMass = function (delta) {
     var mass;
     if (this.mInvMass !== 0)
         mass = 1 / this.mInvMass;
     else
         mass = 0;
-    
-    mass += delta;       
+
+    mass += delta;
     if (mass <= 0) {
         this.mInvMass = 0;
         this.mVelocity = new Vec2(0, 0);
@@ -71,21 +71,23 @@ RigidShape.prototype.updateMass = function(delta) {
     this.updateInertia();
 };
 
-RigidShape.prototype.updateInertia = function() {
+RigidShape.prototype.updateInertia = function () {
     // subclass must define this.
     // must work with inverted this.mInvMass
 };
 
 RigidShape.prototype.update = function () {
-    var dt=gEngine.Core.mUpdateIntervalInSeconds;
-    //s = v*t + 0.5*a*t^2
-    this.move(this.mVelocity.scale(dt).add(this.mAcceleration.scale(dt * dt / 2)));
-    //v += a*t
-    this.mVelocity = this.mVelocity.add(this.mAcceleration.scale(dt));
+    if (gEngine.Core.mMovement) {
+        var dt = gEngine.Core.mUpdateIntervalInSeconds;
+        //s = v*t + 0.5*a*t^2
+        this.move(this.mVelocity.scale(dt).add(this.mAcceleration.scale(dt * dt / 2)));
+        //v += a*t
+        this.mVelocity = this.mVelocity.add(this.mAcceleration.scale(dt));
 
-    this.rotate(this.mAngularVelocity * dt + this.mAngularAcceleration * dt * dt / 2);
+        this.rotate(this.mAngularVelocity * dt + this.mAngularAcceleration * dt * dt / 2);
 
-    this.mAngularVelocity += this.mAngularAcceleration * dt;
+        this.mAngularVelocity += this.mAngularAcceleration * dt;
+    }
 };
 
 RigidShape.prototype.boundTest = function (otherShape) {

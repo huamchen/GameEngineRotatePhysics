@@ -24,7 +24,8 @@ gEngine.Core = (function () {
     mCanvas.height = mHeight;
     mCanvas.width = mWidth;
 
-    var mGravity = new Vec2(0, 0);
+    var mGravity = new Vec2(0, 10);
+    var mMovement=false;
     
     var mCurrentTime,
             mElapsedTime,
@@ -71,7 +72,7 @@ gEngine.Core = (function () {
                     "<li>Mass: " + 1 / mAllObject[gObjectNum].mInvMass.toPrecision(3) + "</li>"  +
                     "<li>Friction: " + mAllObject[gObjectNum].mFriction.toPrecision(3) + "</li>"  +
                     "<li>Restitution: " + mAllObject[gObjectNum].mRestitution.toPrecision(3) + "</li>"  +
-                    "<li>Gravity: " + mGravity.y.toPrecision(3) + "</li>"  +
+                    "<li>Movement: " + gEngine.Core.mMovement + "</li>"  +
                 "</ul> <hr>" +
                 "<p><b>Control</b>: of selected object</p>" +
                 "<ul style=\"margin:-10px\">" +
@@ -81,7 +82,7 @@ gEngine.Core = (function () {
                     "<li><b>Z/X</b>: Mass [Decrease/Increase]</li>" +
                     "<li><b>C/V</b>: Frictrion [Decrease/Increase]</li>" +
                     "<li><b>B/N</b>: Restitution [Decrease/Increase]</li>" +
-                    "<li><b>,/.</b>: Gravity [Decrease/Increase]</li>" +
+                    "<li><b>,</b>: Movement [On/Off]</li>" +
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<p><b>H</b>: Excite all objects</p>" +
@@ -114,7 +115,8 @@ gEngine.Core = (function () {
         mHeight: mHeight,
         mContext: mContext,
         mGravity: mGravity,
-        mUpdateIntervalInSeconds:mUpdateIntervalInSeconds
+        mUpdateIntervalInSeconds:mUpdateIntervalInSeconds,
+        mMovement:mMovement
     };
     return mPublic;
 }());

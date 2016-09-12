@@ -121,13 +121,9 @@ function userControl(event)
     if (keycode === 188) {
         //，
 
-        gEngine.Core.mGravity.y -= 1;
+        gEngine.Core.mMovement=!gEngine.Core.mMovement;
     }
-    if (keycode === 190) {
-        //.
 
-        gEngine.Core.mGravity.y += 1;
-    }
     if (keycode === 70) {
         //f
         var r1 = new Rectangle(new Vec2(gEngine.Core.mAllObject[gObjectNum].mCenter.x, gEngine.Core.mAllObject[gObjectNum].mCenter.y), Math.random() * 30 + 10, Math.random() * 30 + 10, Math.random() * 30, Math.random(), Math.random());
