@@ -71,6 +71,7 @@ gEngine.Core = (function () {
                     "<li>Mass: " + 1 / mAllObject[gObjectNum].mInvMass.toPrecision(3) + "</li>"  +
                     "<li>Friction: " + mAllObject[gObjectNum].mFriction.toPrecision(3) + "</li>"  +
                     "<li>Restitution: " + mAllObject[gObjectNum].mRestitution.toPrecision(3) + "</li>"  +
+                    "<li>Gravity: " + mGravity.y.toPrecision(3) + "</li>"  +
                 "</ul> <hr>" +
                 "<p><b>Control</b>: of selected object</p>" +
                 "<ul style=\"margin:-10px\">" +
@@ -80,6 +81,8 @@ gEngine.Core = (function () {
                     "<li><b>Z/X</b>: Mass [Decrease/Increase]</li>" +
                     "<li><b>C/V</b>: Frictrion [Decrease/Increase]</li>" +
                     "<li><b>B/N</b>: Restitution [Decrease/Increase]</li>" +
+                    "<li><b>M</b>: Positional Correction [On/Off]</li>" +
+                    "<li><b>,/.</b>: Gravity [Decrease/Increase]</li>" +
                 "</ul> <hr>" +
                 "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
                 "<p><b>H</b>: Excite all objects</p>" +

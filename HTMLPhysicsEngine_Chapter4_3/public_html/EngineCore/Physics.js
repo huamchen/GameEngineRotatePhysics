@@ -9,6 +9,7 @@ var gEngine = gEngine || {};
 
 gEngine.Physics = (function () {
 
+    var mPositionalCorrectionFlag=true;
     var mRelaxationCount = 15;                  // number of relaxation iteration
     var mRelaxationOffset = 1 / mRelaxationCount; // porportion to apply when scaling friction
     var mPosCorrectionRate = 0.8;               // percentage of separation to project objects
@@ -54,7 +55,8 @@ gEngine.Physics = (function () {
             return;
 
         //  correct positions
-        positionalCorrection(s1, s2, collisionInfo);
+        if(gEngine.Physics.mPositionalCorrectionFlag)
+            positionalCorrection(s1, s2, collisionInfo);
 
         var n = collisionInfo.getNormal();
 
@@ -99,7 +101,8 @@ gEngine.Physics = (function () {
     };
 
     var mPublic = {
-        collision: collision
+        collision: collision,
+        mPositionalCorrectionFlag:mPositionalCorrectionFlag
     };
 
     return mPublic;

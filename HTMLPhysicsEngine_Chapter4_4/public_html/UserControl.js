@@ -118,7 +118,22 @@ function userControl(event)
 
         gEngine.Core.mAllObject[gObjectNum].mRestitution += 0.01;
     }
+    if (keycode === 77) {
+        //M
 
+        gEngine.Physics.mPositionalCorrectionFlag=!gEngine.Physics.mPositionalCorrectionFlag;
+    }
+
+    if (keycode === 188) {
+        //，
+
+        gEngine.Core.mGravity.y -= 1;
+    }
+    if (keycode === 190) {
+        //.
+
+        gEngine.Core.mGravity.y += 1;
+    }
     if (keycode === 70) {
         //f
         var r1 = new Rectangle(new Vec2(gEngine.Core.mAllObject[gObjectNum].mCenter.x, gEngine.Core.mAllObject[gObjectNum].mCenter.y), Math.random() * 30 + 10, Math.random() * 30 + 10, Math.random() * 30, Math.random(), Math.random());

@@ -118,16 +118,25 @@ function userControl(event)
 
         gEngine.Core.mAllObject[gObjectNum].mRestitution += 0.01;
     }
+    if (keycode === 188) {
+        //，
 
+        gEngine.Core.mGravity.y -= 1;
+    }
+    if (keycode === 190) {
+        //.
+
+        gEngine.Core.mGravity.y += 1;
+    }
     if (keycode === 70) {
         //f
         var r1 = new Rectangle(new Vec2(gEngine.Core.mAllObject[gObjectNum].mCenter.x, gEngine.Core.mAllObject[gObjectNum].mCenter.y), Math.random() * 30 + 10, Math.random() * 30 + 10, Math.random() * 30, Math.random(), Math.random());
-        r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
+     //   r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
     }
     if (keycode === 71) {
         //g
         var r1 = new Circle(new Vec2(gEngine.Core.mAllObject[gObjectNum].mCenter.x, gEngine.Core.mAllObject[gObjectNum].mCenter.y), Math.random() * 10 + 20, Math.random() * 30, Math.random(), Math.random());
-        r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
+     //   r1.mVelocity = new Vec2(Math.random() * 300 - 150, Math.random() * 300 - 150);
     }
 
     if (keycode === 72) {
@@ -135,7 +144,7 @@ function userControl(event)
         var i;
         for (i = 0; i < gEngine.Core.mAllObject.length; i++) {
             if (gEngine.Core.mAllObject[i].mInvMass !== 0)
-                gEngine.Core.mAllObject[i].mVelocity = new Vec2(Math.random() * 2000 - 1000, Math.random() * 2000 - 1000);
+                gEngine.Core.mAllObject[i].mVelocity = new Vec2(Math.random() * 20 - 10, Math.random() * 20 - 10);
         }
     }
     if (keycode === 82) {
