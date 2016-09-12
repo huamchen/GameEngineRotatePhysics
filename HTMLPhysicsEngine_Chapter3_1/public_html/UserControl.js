@@ -21,10 +21,10 @@ function userControl(event)
         //alert('firefox ');
         keycode = event.which;
     }
-
     if (keycode >= 48 && keycode <= 57)
     {
-        gObjectNum = keycode - 48;
+        if (keycode - 48 < gEngine.Core.mAllObject.length)
+            gObjectNum = keycode - 48;
     }
     if (keycode === 38) {
         //up arrow
