@@ -132,7 +132,7 @@ gEngine.Physics = (function () {
         context.moveTo(collisionInfo.mStart.x, collisionInfo.mStart.y);
         context.lineTo(collisionInfo.mEnd.x, collisionInfo.mEnd.y);
         context.closePath();
-        context.strokeStyle = "black";
+        context.strokeStyle = "orange";
         context.stroke();
     };
 
