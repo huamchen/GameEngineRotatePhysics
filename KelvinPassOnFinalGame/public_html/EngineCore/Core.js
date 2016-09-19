@@ -34,7 +34,7 @@ gEngine.Core = (function () {
     var kFrameTime = 1 / kFPS;
     var mUpdateIntervalInSeconds = kFrameTime;
     var kMPF = 1000 * kFrameTime; // Milliseconds per frame.
-    var mAllObject = [];
+    var mAllObjects = [];
 
     var runGameLoop = function () {
         requestAnimationFrame(function () {
@@ -64,13 +64,13 @@ gEngine.Core = (function () {
                 "<p><b>Selected Object:</b>:</p>" +
                 "<ul style=\"margin:-10px\">" +
                     "<li>Id: " + gObjectNum + "</li>" +
-                    "<li>Center: " + mAllObject[gObjectNum].mCenter.x.toPrecision(3) + "," + mAllObject[gObjectNum].mCenter.y.toPrecision(3) + "</li>"  + 
-                    "<li>Angle: " + mAllObject[gObjectNum].mAngle.toPrecision(3) + "</li>"  +
-                    "<li>Velocity: " + mAllObject[gObjectNum].mVelocity.x.toPrecision(3) + "," + mAllObject[gObjectNum].mVelocity.y.toPrecision(3) + "</li>"  +
-                    "<li>AngluarVelocity: " + mAllObject[gObjectNum].mAngularVelocity.toPrecision(3) + "</li>"  +
-                    "<li>Mass: " + 1 / mAllObject[gObjectNum].mInvMass.toPrecision(3) + "</li>"  +
-                    "<li>Friction: " + mAllObject[gObjectNum].mFriction.toPrecision(3) + "</li>"  +
-                    "<li>Restitution: " + mAllObject[gObjectNum].mRestitution.toPrecision(3) + "</li>"  +
+                    "<li>Center: " + mAllObjects[gObjectNum].mCenter.x.toPrecision(3) + "," + mAllObjects[gObjectNum].mCenter.y.toPrecision(3) + "</li>"  + 
+                    "<li>Angle: " + mAllObjects[gObjectNum].mAngle.toPrecision(3) + "</li>"  +
+                    "<li>Velocity: " + mAllObjects[gObjectNum].mVelocity.x.toPrecision(3) + "," + mAllObjects[gObjectNum].mVelocity.y.toPrecision(3) + "</li>"  +
+                    "<li>AngluarVelocity: " + mAllObjects[gObjectNum].mAngularVelocity.toPrecision(3) + "</li>"  +
+                    "<li>Mass: " + 1 / mAllObjects[gObjectNum].mInvMass.toPrecision(3) + "</li>"  +
+                    "<li>Friction: " + mAllObjects[gObjectNum].mFriction.toPrecision(3) + "</li>"  +
+                    "<li>Restitution: " + mAllObjects[gObjectNum].mRestitution.toPrecision(3) + "</li>"  +
                 "</ul> <hr>" +
                 "<p><b>Control</b>: of selected object</p>" +
                 "<ul style=\"margin:-10px\">" +
@@ -89,17 +89,17 @@ gEngine.Core = (function () {
     var draw = function () {
         mContext.clearRect(0, 0, mWidth, mHeight);
         var i;
-        for (i = 0; i < mAllObject.length; i++) {
+        for (i = 0; i < mAllObjects.length; i++) {
             mContext.strokeStyle = 'blue';
             if (i === gObjectNum)
                 mContext.strokeStyle = 'red';
-            mAllObject[i].draw(mContext);
+            mAllObjects[i].draw(mContext);
         }
     };
     var update = function () {
         var i;
-        for (i = 0; i < mAllObject.length; i++) {
-            mAllObject[i].update(mContext);
+        for (i = 0; i < mAllObjects.length; i++) {
+            mAllObjects[i].update(mContext);
         }
     };
     var initializeEngineCore = function () {
@@ -107,7 +107,7 @@ gEngine.Core = (function () {
     };    
     var mPublic = {
         initializeEngineCore: initializeEngineCore,
-        mAllObject: mAllObject,
+        mAllObjects: mAllObjects,
         mWidth: mWidth,
         mHeight: mHeight,
         mContext: mContext,

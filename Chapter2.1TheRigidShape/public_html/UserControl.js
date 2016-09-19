@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-/* global mAllObject, gEngine */
+/* global mAllObjects, gEngine */
 
 var gObjectNum = 0;
 function userControl(event)
@@ -25,7 +25,7 @@ function userControl(event)
 
     if (keycode >= 48 && keycode <= 57)
     {
-        if (keycode - 48 < gEngine.Core.mAllObject.length)
+        if (keycode - 48 < gEngine.Core.mAllObjects.length)
             gObjectNum = keycode - 48;
     }
     if (keycode === 38) {
@@ -35,7 +35,7 @@ function userControl(event)
     }
     if (keycode === 40) {
         // down arrow
-        if (gObjectNum < gEngine.Core.mAllObject.length - 1)
+        if (gObjectNum < gEngine.Core.mAllObjects.length - 1)
             gObjectNum++;
     }
     if (keycode === 70) {

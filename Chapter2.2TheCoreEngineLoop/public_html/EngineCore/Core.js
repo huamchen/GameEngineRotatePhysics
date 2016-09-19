@@ -32,7 +32,7 @@ gEngine.Core = (function () {
     var kFrameTime = 1 / kFPS;
     var mUpdateIntervalInSeconds = kFrameTime;
     var kMPF = 1000 * kFrameTime; // Milliseconds per frame.
-    var mAllObject = [];
+    var mAllObjects = [];
 
     var runGameLoop = function () {
         requestAnimationFrame(function () {
@@ -61,15 +61,15 @@ gEngine.Core = (function () {
                 "<p><b>Selected Object:</b>:</p>" +
                 "<ul style=\"margin:-10px\">" +
                     "<li>Id: " + gObjectNum + "</li>" +
-                    "<li>Center: " + mAllObject[gObjectNum].mCenter.x.toPrecision(3) + "," + mAllObject[gObjectNum].mCenter.y.toPrecision(3) + "</li>"  + 
-                    "<li>Angle: " + mAllObject[gObjectNum].mAngle.toPrecision(3) + "</li>"  +
+                    "<li>Center: " + mAllObjects[gObjectNum].mCenter.x.toPrecision(3) + "," +mAllObjects[gObjectNum].mCenter.y.toPrecision(3) + "</li>"  + 
+                    "<li>Angle: " + mAllObjects[gObjectNum].mAngle.toPrecision(3) + "</li>"  +
                 "</ul> <hr>" +
                 "<p><b>Control</b>: of selected object</p>" +
                 "<ul style=\"margin:-10px\">" +
                     "<li><b>Num</b> or <b>Up/Down Arrow</b>: Select Object</li>" +
                     "<li><b>WASD</b> + <b>QE</b>: Position [Move + Rotate]</li>" +
                 "</ul> <hr>" +
-                "<b>F/G</b>: Spawn [Rectangle/Circle] at selected object" +
+                "<b>F/G</b>: Spawn [Rectangle/Circle] at random location" +
                 "<p><b>H</b>: Fix object</p>" +
                 "<p><b>R</b>: Reset System</p>" +
                 "<hr>";
@@ -77,18 +77,18 @@ gEngine.Core = (function () {
     var draw = function () {
         mContext.clearRect(0, 0, mWidth, mHeight);
         var i;
-        for (i = 0; i < mAllObject.length; i++) {
+        for (i = 0; i < mAllObjects.length; i++) {
             mContext.strokeStyle = 'blue';
             if (i === gObjectNum)
                 mContext.strokeStyle = 'red';
-            mAllObject[i].draw(mContext);
+            mAllObjects[i].draw(mContext);
         }
     };
 
     var update = function () {
         var i;
-        for (i = 0; i < mAllObject.length; i++) {
-            mAllObject[i].update(mContext);
+        for (i = 0; i < mAllObjects.length; i++) {
+            mAllObjects[i].update(mContext);
         }
     };
 
@@ -97,7 +97,7 @@ gEngine.Core = (function () {
     };
     var mPublic = {
         initializeEngineCore: initializeEngineCore,
-        mAllObject: mAllObject,
+        mAllObjects:mAllObjects,
         mWidth: mWidth,
         mHeight: mHeight,
         mContext: mContext

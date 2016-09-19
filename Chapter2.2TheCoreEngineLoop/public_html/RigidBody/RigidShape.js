@@ -6,14 +6,14 @@
 
 
 
-/* global mAllObject, dt, gEngine */
+/* global mAllObjects, dt, gEngine */
 
 function RigidShape(center) {
 
     this.mCenter = center;
     //angle
     this.mAngle = 0;
-    gEngine.Core.mAllObject.push(this);
+    gEngine.Core.mAllObjects.push(this);
 }
 
 RigidShape.prototype.update = function () {

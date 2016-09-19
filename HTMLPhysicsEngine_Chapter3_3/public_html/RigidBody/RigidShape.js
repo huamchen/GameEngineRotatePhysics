@@ -6,7 +6,7 @@
 
 
 
-/* global mAllObject, dt, gEngine */
+/* global mAllObjects, dt, gEngine */
 
 function RigidShape(center,mass,friction,restitution) {
 
@@ -14,7 +14,7 @@ function RigidShape(center,mass,friction,restitution) {
     //angle
     this.mAngle = 0;  
     this.mBoundRadius=0;
-    gEngine.Core.mAllObject.push(this);
+    gEngine.Core.mAllObjects.push(this);
 }
 
 RigidShape.prototype.update = function () {
