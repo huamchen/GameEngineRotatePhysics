@@ -15,12 +15,12 @@ gEngine.Physics = (function () {
     var mPosCorrectionRate = 0.8;               // percentage of separation to project objects
     var collision = function () {
         var i, j, k;
+        var collisionInfo = new CollisionInfo();
         for (k = 0; k < mRelaxationCount; k++) {
             for (i = 0; i < gEngine.Core.mAllObjects.length; i++) {
                 for (j = i + 1; j < gEngine.Core.mAllObjects.length; j++)
                 {
-                    if (gEngine.Core.mAllObjects[i].boundTest(gEngine.Core.mAllObjects[j])) {
-                        var collisionInfo = new CollisionInfo();
+                    if (gEngine.Core.mAllObjects[i].boundTest(gEngine.Core.mAllObjects[j])) {                     
                         if (gEngine.Core.mAllObjects[i].collisionTest(gEngine.Core.mAllObjects[j], collisionInfo))
                         {
                             //make sure the normal is always from object[i] to object[j]
