@@ -5,38 +5,36 @@
  */
 
 /* global mAllObjects, gEngine */
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 var gObjectNum = 0;
-function userControl(event)
-{
+function userControl(event) {
     var keycode;
     var width = gEngine.Core.mWidth;
     var height = gEngine.Core.mHeight;
-    if (window.event) // IE 
-    {
+    if (window.event) {
         //alert('ie');
         keycode = event.keyCode;
-    }
-    else if (event.which) // Netscape/Firefox/Opera
-    {
+    } else if (event.which) {
         //alert('firefox ');
         keycode = event.which;
     }
-
-    if (keycode >= 48 && keycode <= 57)
-    {
-        if (keycode - 48 < gEngine.Core.mAllObjects.length)
+    if (keycode >= 48 && keycode <= 57) {
+        if (keycode - 48 < gEngine.Core.mAllObjects.length) {
             gObjectNum = keycode - 48;
+        }
     }
     if (keycode === 38) {
         //up arrow
-        if (gObjectNum > 0)
+        if (gObjectNum > 0) {
             gObjectNum--;
+        }
     }
     if (keycode === 40) {
         // down arrow
-        if (gObjectNum < gEngine.Core.mAllObjects.length - 1)
+        if (gObjectNum < gEngine.Core.mAllObjects.length - 1) {
             gObjectNum++;
+        }
     }
     if (keycode === 70) {
         //f

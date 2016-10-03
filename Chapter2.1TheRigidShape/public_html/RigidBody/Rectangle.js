@@ -4,9 +4,10 @@
  * and open the template in the editor.
  */
 
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 
-/* global RigidShape */
 
 var Rectangle = function (center, width, height) {
 

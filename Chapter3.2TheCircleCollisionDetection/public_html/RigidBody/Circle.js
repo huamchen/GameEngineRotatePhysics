@@ -3,16 +3,17 @@
  *      define a circle
  *     
  */
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 /* global RigidShape */
 
 var Circle = function (center, radius, mass, friction, restitution) {
     RigidShape.call(this, center, mass, friction, restitution);
     this.mType = "Circle";
     this.mRadius = radius;
-    this.mBoundRadius=radius;
+    this.mBoundRadius = radius;
     //The start point of line in circle
-    this.mStartpoint = new Vec2(center.x, center.y - radius); 
+    this.mStartpoint = new Vec2(center.x, center.y - radius);
 
 };
 

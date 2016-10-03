@@ -5,9 +5,12 @@
  */
 
 /* global height, width, gEngine */
+
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 function MyGame() {
-    var width=gEngine.Core.mWidth;
-    var height=gEngine.Core.mHeight;
+    var width = gEngine.Core.mWidth;
+    var height = gEngine.Core.mHeight;
 
     var up = new Rectangle(new Vec2(width / 2, 0), width, 3);
     var down = new Rectangle(new Vec2(width / 2, height), width, 3);

@@ -3,7 +3,8 @@
  *      define a circle
  *     
  */
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 
 
@@ -14,7 +15,7 @@ var Circle = function (center, radius, fix) {
     this.mType = "Circle";
 
     this.mRadius = radius;
-    this.mFix=fix;
+    this.mFix = fix;
     //The start point of line in circle
     this.mStartpoint = new Vec2(center.x, center.y - radius);
 

@@ -3,16 +3,17 @@
  *      define a circle
  *     
  */
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 /* global RigidShape */
 
 var Circle = function (center, radius, mass, friction, restitution) {
     RigidShape.call(this, center, mass, friction, restitution);
     this.mType = "Circle";
     this.mRadius = radius;
-    this.mBoundRadius=radius;
+    this.mBoundRadius = radius;
     //The start point of line in circle
-    this.mStartpoint = new Vec2(center.x, center.y - radius); 
+    this.mStartpoint = new Vec2(center.x, center.y - radius);
     this.updateInertia();
 };
 
@@ -47,13 +48,13 @@ Circle.prototype.rotate = function (angle) {
     return this;
 };
 
-Circle.prototype.updateInertia = function() {
+Circle.prototype.updateInertia = function () {
     if (this.mInvMass === 0) {
         this.mInertia = 0;
     } else {
         // this.mInvMass is inverted!!
         // Inertia=mass * radius^2
         // 12 is a constant value that can be changed
-        this.mInertia = (1/this.mInvMass) * (this.mRadius * this.mRadius) / 12;
+        this.mInertia = (1 / this.mInvMass) * (this.mRadius * this.mRadius) / 12;
     }
 };

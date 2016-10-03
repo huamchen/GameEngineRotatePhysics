@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-/*global Rectangle, Vec2 */
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 Rectangle.prototype.collisionTest = function (otherShape, collisionInfo) {
     var status = false;

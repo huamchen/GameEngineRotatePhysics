@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-/* global Circle */
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 Circle.prototype.collisionTest = function (otherShape, collisionInfo) {
     var status = false;

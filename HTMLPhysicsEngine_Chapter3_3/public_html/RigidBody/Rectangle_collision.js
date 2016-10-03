@@ -3,15 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 /*global Rectangle, Vec2 */
 
 Rectangle.prototype.collisionTest = function (otherShape, collisionInfo) {
     var status = false;
-    if (otherShape.mType === "Circle")
+    if (otherShape.mType === "Circle") {
         status = false;
-    else
+    } else {
         status = this.collidedRectRect(this, otherShape, collisionInfo);
+    }
     return status;
 };
 
@@ -26,17 +28,14 @@ Rectangle.prototype.collisionTest = function (otherShape, collisionInfo) {
 Rectangle.prototype.getSupport = function (dir) {
     //the longest project length
     var bestProjection = this.mVertex[0].dot(dir);
-
+    var i, v;
     //the vertex that has the longest project length
     var bestVertex = this.mVertex[0];
-
     var projection;
-    for (var i = 1; i < this.mVertex.length; i++)
-    {
-        var v = this.mVertex[i];
+    for (i = 1; i < this.mVertex.length; i++) {
+        v = this.mVertex[i];
         projection = v.dot(dir);
-        if (projection > bestProjection)
-        {
+        if (projection > bestProjection) {
             bestVertex = v;
             bestProjection = projection;
         }
@@ -58,38 +57,34 @@ Rectangle.prototype.findAxisLeastPenetration = function (otherRect, collisionInf
     var n;
     var supportPoint;
 
+    var dir, s, v, d;
     var bestDistance = -99999;
     var bestIndex = null;
 
-    for (i = 0; i < 4; ++i)
-    {
+    for (i = 0; i < 4; i++) {
         // Retrieve a face normal from A
         n = this.mFaceNormal[i];
 
         // Retrieve support point from B along -n
-        var dir = n.scale(-1);
-        var s = otherRect.getSupport(dir);
+        dir = n.scale(-1);
+        s = otherRect.getSupport(dir);
 
         // Retrieve vertex on face from A, transform into B's model space
-        var v = s.subtract(this.mVertex[i]);
+        v = s.subtract(this.mVertex[i]);
 
         // Compute penetration distance (in B's model space)
-        var d = n.dot(v);
+        d = n.dot(v);
 
         // Store greatest distance
-        if (d > bestDistance)
-        {
+        if (d > bestDistance) {
             bestDistance = d;
             bestIndex = i;
             supportPoint = s;
         }
     }
-    if (bestDistance >= 0)
-    {
+    if (bestDistance >= 0) {
         return false;
-    }
-    else
-    {
+    } else {
         var bestVec = this.mFaceNormal[bestIndex].scale(-bestDistance);
         collisionInfo.setInfo(-bestDistance, this.mFaceNormal[bestIndex], supportPoint.add(bestVec));
     }
@@ -114,19 +109,15 @@ Rectangle.prototype.collidedRectRect = function (r1, r2, collisionInfo) {
     status1 = r1.findAxisLeastPenetration(r2, collisionInfoR1);
     status2 = r2.findAxisLeastPenetration(r1, collisionInfoR2);
 
-    if (status1 && status2)
-    {
+    if (status1 && status2) {
         //if both of rectangles are overlapping, choose the shorter normal as the normal       
-        if (collisionInfoR1.getDepth() < collisionInfoR2.getDepth())
-        {
+        if (collisionInfoR1.getDepth() < collisionInfoR2.getDepth()) {
             var depthVec = collisionInfoR1.getNormal().scale(collisionInfoR1.getDepth());
             collisionInfo.setInfo(collisionInfoR1.getDepth(), collisionInfoR1.getNormal(), collisionInfoR1.mStart.subtract(depthVec));
-        }
-        else {
+        } else {
             collisionInfo.setInfo(collisionInfoR2.getDepth(), collisionInfoR2.getNormal().scale(-1), collisionInfoR2.mStart);
         }
-    }
-    else {
+    } else {
         collisionInfo = new CollisionInfo();
     }
     return status1 && status2;

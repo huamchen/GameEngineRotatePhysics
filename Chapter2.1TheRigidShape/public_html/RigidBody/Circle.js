@@ -3,11 +3,11 @@
  *      define a circle
  *     
  */
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 
 
-
-/* global RigidShape */
 
 var Circle = function (center, radius) {
     RigidShape.call(this, center);

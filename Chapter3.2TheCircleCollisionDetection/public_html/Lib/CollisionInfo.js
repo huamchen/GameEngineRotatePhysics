@@ -4,6 +4,7 @@
  *      depth: how much penetration
  */
 
+/*jslint node: true, vars: true, evil: true, bitwise: true */
 "use strict";
 
 /**

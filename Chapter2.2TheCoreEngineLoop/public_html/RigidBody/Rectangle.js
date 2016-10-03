@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 /* global RigidShape */
 
@@ -12,7 +13,7 @@ var Rectangle = function (center, width, height, fix) {
 
     RigidShape.call(this, center);
     this.mType = "Rectangle";
-    this.mFix=fix;
+    this.mFix = fix;
     this.mWidth = width;
     this.mHeight = height;
     this.mVertex = [];
@@ -44,8 +45,7 @@ Rectangle.prototype = prototype;
 Rectangle.prototype.rotate = function (angle) {
     this.mAngle += angle;
     var i;
-    for (i = 0; i < this.mVertex.length; i++)
-    {
+    for (i = 0; i < this.mVertex.length; i++) {
         this.mVertex[i] = this.mVertex[i].rotate(this.mCenter, angle);
     }
     this.mFaceNormal[0] = this.mVertex[1].subtract(this.mVertex[2]);
@@ -61,8 +61,7 @@ Rectangle.prototype.rotate = function (angle) {
 
 Rectangle.prototype.move = function (v) {
     var i;
-    for (i = 0; i < this.mVertex.length; i++)
-    {
+    for (i = 0; i < this.mVertex.length; i++) {
         this.mVertex[i] = this.mVertex[i].add(v);
     }
     this.mCenter = this.mCenter.add(v);

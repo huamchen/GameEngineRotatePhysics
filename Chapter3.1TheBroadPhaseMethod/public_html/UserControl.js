@@ -5,8 +5,9 @@
  */
 
 /* global mAllObjects, gEngine */
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
 "use strict";
+
 
 var gObjectNum = 0;
 function userControl(event) {
@@ -14,26 +15,26 @@ function userControl(event) {
     if (window.event) { // IE 
         //alert('ie');
         keycode = event.keyCode;
-    }
-    else if (event.which) // Netscape/Firefox/Opera
-    {
+    } else if (event.which) {
         //alert('firefox ');
         keycode = event.which;
     }
-    if (keycode >= 48 && keycode <= 57)
-    {
-        if (keycode - 48 < gEngine.Core.mAllObjects.length)
+    if (keycode >= 48 && keycode <= 57) {
+        if (keycode - 48 < gEngine.Core.mAllObjects.length) {
             gObjectNum = keycode - 48;
+        }
     }
     if (keycode === 38) {
         //up arrow
-        if (gObjectNum > 0)
+        if (gObjectNum > 0) {
             gObjectNum--;
+        }
     }
     if (keycode === 40) {
         // down arrow
-        if (gObjectNum < gEngine.Core.mAllObjects.length - 1)
+        if (gObjectNum < gEngine.Core.mAllObjects.length - 1) {
             gObjectNum++;
+        }
     }
     if (keycode === 87) {
         //W
@@ -53,16 +54,12 @@ function userControl(event) {
     }
     if (keycode === 81) {
         //Q
-
         gEngine.Core.mAllObjects[gObjectNum].rotate(-0.1);
     }
     if (keycode === 69) {
         //E
-
         gEngine.Core.mAllObjects[gObjectNum].rotate(0.1);
     }
-
-
     if (keycode === 70) {
         //f
         var r1 = new Rectangle(new Vec2(gEngine.Core.mAllObjects[gObjectNum].mCenter.x, gEngine.Core.mAllObjects[gObjectNum].mCenter.y), Math.random() * 30 + 10, Math.random() * 30 + 10, Math.random() * 30, Math.random(), Math.random());

@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 /* global mAllObjects, dt, gEngine */
 
@@ -12,20 +13,23 @@ function RigidShape(center, mass, friction, restitution) {
 
     this.mCenter = center;
     this.mInertia = 0;
-    if (mass !== undefined)
+    if (mass !== undefined) {
         this.mInvMass = mass;
-    else
+    } else {
         this.mInvMass = 1;
+    }
 
-    if (friction !== undefined)
+    if (friction !== undefined) {
         this.mFriction = friction;
-    else
+    } else {
         this.mFriction = 0.8;
+    }
 
-    if (restitution !== undefined)
+    if (restitution !== undefined) {
         this.mRestitution = restitution;
-    else
+    } else {
         this.mRestitution = 0.2;
+    }
 
     this.mVelocity = new Vec2(0, 0);
 
@@ -52,10 +56,11 @@ function RigidShape(center, mass, friction, restitution) {
 
 RigidShape.prototype.updateMass = function (delta) {
     var mass;
-    if (this.mInvMass !== 0)
+    if (this.mInvMass !== 0) {
         mass = 1 / this.mInvMass;
-    else
+    } else {
         mass = 0;
+    }
 
     mass += delta;
     if (mass <= 0) {

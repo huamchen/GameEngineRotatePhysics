@@ -3,7 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 var Vec2 = function (x, y) {
     this.x = x;
     this.y = y;

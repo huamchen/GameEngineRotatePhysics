@@ -4,33 +4,37 @@
  * and open the template in the editor.
  */
 
-
+/*jslint node: true, vars: true, evil: true, bitwise: true */
+"use strict";
 
 /* global mAllObjects, dt, gEngine */
 
-function RigidShape(center,mass,friction,restitution) {
+function RigidShape(center, mass, friction, restitution) {
 
     this.mCenter = center;
     this.mInertia = 0;
-    if (mass !== undefined)
+    if (mass !== undefined) {
         this.mInvMass = mass;
-    else
+    } else {
         this.mInvMass = 1;
-    
-    if (friction !== undefined)
-       this.mFriction = friction; 
-    else
-        this.mFriction = 0.8;
+    }
 
-    if (restitution !== undefined)
+    if (friction !== undefined) {
+        this.mFriction = friction;
+    } else {
+        this.mFriction = 0.8;
+    }
+
+    if (restitution !== undefined) {
         this.mRestitution = restitution;
-    else
+    } else {
         this.mRestitution = 0.2;
+    }
 
     this.mVelocity = new Vec2(0, 0);
-    
+
     if (this.mInvMass !== 0) {
-        this.mInvMass = 1/this.mInvMass;
+        this.mInvMass = 1 / this.mInvMass;
         this.mAcceleration = gEngine.Core.mGravity;
     } else {
         this.mAcceleration = new Vec2(0, 0);
@@ -44,20 +48,21 @@ function RigidShape(center,mass,friction,restitution) {
     this.mAngularVelocity = 0;
 
     this.mAngularAcceleration = 0;
-    
-    this.mBoundRadius=0;
+
+    this.mBoundRadius = 0;
 
     gEngine.Core.mAllObjects.push(this);
 }
 
-RigidShape.prototype.updateMass = function(delta) {
+RigidShape.prototype.updateMass = function (delta) {
     var mass;
-    if (this.mInvMass !== 0)
+    if (this.mInvMass !== 0) {
         mass = 1 / this.mInvMass;
-    else
+    } else {
         mass = 0;
-    
-    mass += delta;       
+    }
+
+    mass += delta;
     if (mass <= 0) {
         this.mInvMass = 0;
         this.mVelocity = new Vec2(0, 0);
@@ -71,7 +76,7 @@ RigidShape.prototype.updateMass = function(delta) {
     this.updateInertia();
 };
 
-RigidShape.prototype.updateInertia = function() {
+RigidShape.prototype.updateInertia = function () {
     // subclass must define this.
     // must work with inverted this.mInvMass
 };
