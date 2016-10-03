@@ -107,15 +107,19 @@ Rectangle.prototype.collidedRectRect = function (r1, r2, collisionInfo) {
 
     //find Axis of Separation for both rectangle
     status1 = r1.findAxisLeastPenetration(r2, collisionInfoR1);
-    status2 = r2.findAxisLeastPenetration(r1, collisionInfoR2);
 
-    if (status1 && status2) {
-        //if both of rectangles are overlapping, choose the shorter normal as the normal       
-        if (collisionInfoR1.getDepth() < collisionInfoR2.getDepth()) {
-            var depthVec = collisionInfoR1.getNormal().scale(collisionInfoR1.getDepth());
-            collisionInfo.setInfo(collisionInfoR1.getDepth(), collisionInfoR1.getNormal(), collisionInfoR1.mStart.subtract(depthVec));
+    if (status1) {
+        status2 = r2.findAxisLeastPenetration(r1, collisionInfoR2);
+        if (status2) {
+            //if both of rectangles are overlapping, choose the shorter normal as the normal       
+            if (collisionInfoR1.getDepth() < collisionInfoR2.getDepth()) {
+                var depthVec = collisionInfoR1.getNormal().scale(collisionInfoR1.getDepth());
+                collisionInfo.setInfo(collisionInfoR1.getDepth(), collisionInfoR1.getNormal(), collisionInfoR1.mStart.subtract(depthVec));
+            } else {
+                collisionInfo.setInfo(collisionInfoR2.getDepth(), collisionInfoR2.getNormal().scale(-1), collisionInfoR2.mStart);
+            }
         } else {
-            collisionInfo.setInfo(collisionInfoR2.getDepth(), collisionInfoR2.getNormal().scale(-1), collisionInfoR2.mStart);
+            collisionInfo = new CollisionInfo();
         }
     } else {
         collisionInfo = new CollisionInfo();
