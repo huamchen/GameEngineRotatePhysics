@@ -171,13 +171,13 @@ Rectangle.prototype.collidedRectCirc = function (otherCir, collisionInfo) {
 
         if (dot < 0) {
             //the center of circle is in corner region of mVertex[NearEdge]
-            dis = circ2Pos.distance(this.mVertex[NearEdge]);
+            dis = v1.length();
             //compare the distance with radium to decide collision
             if (dis > otherCir.mRadius) {
                 return false;
             }
 
-            normal = circ2Pos.subtract(this.mVertex[NearEdge]).normalize();
+            normal = v1.normalize();
             radiusVec = normal.scale(-otherCir.mRadius);
             collisionInfo.setInfo(otherCir.mRadius - dis, normal, circ2Pos.add(radiusVec));
         } else {
@@ -189,12 +189,12 @@ Rectangle.prototype.collidedRectCirc = function (otherCir, collisionInfo) {
             v2 = this.mVertex[NearEdge].subtract(this.mVertex[(NearEdge + 1) % 4]);
             dot = v1.dot(v2);
             if (dot < 0) {
-                dis = circ2Pos.distance(this.mVertex[(NearEdge + 1) % 4]);
+                dis = v1.length();
                 //compare the distance with radium to decide collision
                 if (dis > otherCir.mRadius) {
                     return false;
                 }
-                normal = circ2Pos.subtract(this.mVertex[(NearEdge + 1) % 4]).normalize();
+                normal = v1.normalize();
                 radiusVec = normal.scale(-otherCir.mRadius);
                 collisionInfo.setInfo(otherCir.mRadius - dis, normal, circ2Pos.add(radiusVec));
             } else {
