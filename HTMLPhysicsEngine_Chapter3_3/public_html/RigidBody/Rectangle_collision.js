@@ -17,30 +17,31 @@ Rectangle.prototype.collisionTest = function (otherShape, collisionInfo) {
     return status;
 };
 
-/**
- * Get support point from a rectangle
- * Support point is the vertex that is the farthest along a given direction
- * @memberOf Rectangle
- * @param {Vec2} dir  a given direction
- * @returns {Vec2} bestVertex the support point
- * the code is convert from http://gamedevelopment.tutsplus.com/tutorials/how-to-create-a-custom-2d-physics-engine-oriented-rigid-bodies--gamedev-8032
- */
-Rectangle.prototype.getSupport = function (dir) {
+var SupportStruct = function () {
+    this.mSupportPoint = null;
+    this.mSupportPointDist = 0;
+};
+var tmpSupport = new SupportStruct();
+
+Rectangle.prototype.findSupportPoint = function (dir, ptOnEdge) {
     //the longest project length
-    var bestProjection = this.mVertex[0].dot(dir);
-    var i, v;
-    //the vertex that has the longest project length
-    var bestVertex = this.mVertex[0];
+    var vToEdge;
     var projection;
-    for (i = 1; i < this.mVertex.length; i++) {
-        v = this.mVertex[i];
-        projection = v.dot(dir);
-        if (projection > bestProjection) {
-            bestVertex = v;
-            bestProjection = projection;
+
+    tmpSupport.mSupportPointDist = -9999999;
+    tmpSupport.mSupportPoint = null;
+    //check each vector of other object
+    for (var i = 0; i < this.mVertex.length; i++) {
+        vToEdge = this.mVertex[i].subtract(ptOnEdge);
+        projection = vToEdge.dot(dir);
+        
+        //find the longest distance with certain edge
+        //dir is -n direction, so the distance should be positive       
+        if ((projection > 0) && (projection > tmpSupport.mSupportPointDist)) {
+            tmpSupport.mSupportPoint = this.mVertex[i];
+            tmpSupport.mSupportPointDist = projection;
         }
     }
-    return bestVertex;
 };
 
 /**
@@ -53,42 +54,41 @@ Rectangle.prototype.getSupport = function (dir) {
  */
 Rectangle.prototype.findAxisLeastPenetration = function (otherRect, collisionInfo) {
 
-    var i;
     var n;
     var supportPoint;
 
-    var dir, s, v, d;
-    var bestDistance = -99999;
+    var bestDistance = 999999;
     var bestIndex = null;
 
-    for (i = 0; i < 4; i++) {
+    var hasSupport = true;
+    var i = 0;
+
+    while ((hasSupport) && (i < this.mFaceNormal.length)) {
         // Retrieve a face normal from A
         n = this.mFaceNormal[i];
 
-        // Retrieve support point from B along -n
-        dir = n.scale(-1);
-        s = otherRect.getSupport(dir);
-
-        // Retrieve vertex on face from A, transform into B's model space
-        v = s.subtract(this.mVertex[i]);
-
-        // Compute penetration distance (in B's model space)
-        d = n.dot(v);
-
-        // Store greatest distance
-        if (d > bestDistance) {
-            bestDistance = d;
+        // use -n as direction and the vectex on edge i as point on edge
+        var dir = n.scale(-1);
+        var ptOnEdge = this.mVertex[i];
+        // find the support on B
+        // the point has longest distance with edge i 
+        otherRect.findSupportPoint(dir, ptOnEdge);
+        hasSupport = (tmpSupport.mSupportPoint !== null);
+        
+        //get the shortest support point depth
+        if ((hasSupport) && (tmpSupport.mSupportPointDist < bestDistance)) {
+            bestDistance = tmpSupport.mSupportPointDist;
             bestIndex = i;
-            supportPoint = s;
+            supportPoint = tmpSupport.mSupportPoint;
         }
+        i = i + 1;
     }
-    if (bestDistance >= 0) {
-        return false;
-    } else {
-        var bestVec = this.mFaceNormal[bestIndex].scale(-bestDistance);
-        collisionInfo.setInfo(-bestDistance, this.mFaceNormal[bestIndex], supportPoint.add(bestVec));
+    if (hasSupport) {
+        //all four directions have support point
+        var bestVec = this.mFaceNormal[bestIndex].scale(bestDistance);
+        collisionInfo.setInfo(bestDistance, this.mFaceNormal[bestIndex], supportPoint.add(bestVec));
     }
-    return true;
+    return hasSupport;
 };
 /**
  * Check for collision between RigidRectangle and RigidRectangle
@@ -97,13 +97,13 @@ Rectangle.prototype.findAxisLeastPenetration = function (otherRect, collisionInf
  * @param {CollisionInfo} collisionInfo Collision info of collision
  * @returns {Boolean} true if collision occurs
  * @memberOf Rectangle
- */
+ */    
+var collisionInfoR1 = new CollisionInfo();
+var collisionInfoR2 = new CollisionInfo();
 Rectangle.prototype.collidedRectRect = function (r1, r2, collisionInfo) {
 
     var status1 = false;
     var status2 = false;
-    var collisionInfoR1 = new CollisionInfo();
-    var collisionInfoR2 = new CollisionInfo();
 
     //find Axis of Separation for both rectangle
     status1 = r1.findAxisLeastPenetration(r2, collisionInfoR1);
