@@ -139,8 +139,8 @@ Rectangle.prototype.collidedRectRect = function(r1, r2, collisionInfo) {
 Rectangle.prototype.collidedRectCirc = function(otherCir, collisionInfo) {
 
   var inside=true;
-  var BestestNum=-99999;
-  var NearEdge=0;
+  var bestDistance=-99999;
+  var nearestEdge=0;
   for(i = 0; i < 4; ++i)
   {
       var circ2Pos = otherCir.mCenter;
@@ -148,47 +148,47 @@ Rectangle.prototype.collidedRectCirc = function(otherCir, collisionInfo) {
       var projection = v.dot(this.faceNormal[i]);
       if(projection>0)
       {
-          BestestNum=projection;
-          NearEdge=i;
+          bestDistance=projection;
+          nearestEdge=i;
           inside=false;
           break;
       } 
-      if(projection>BestestNum)
+      if(projection>bestDistance)
       {
-         BestestNum=projection;
-         NearEdge=i;
+         bestDistance=projection;
+         nearestEdge=i;
       }
   }
   if(!inside)  
   {
-      var v1= circ2Pos.subtract(this.mVertex[NearEdge])
-      var v2= this.mVertex[(NearEdge+1)%4].subtract(this.mVertex[NearEdge])
+      var v1= circ2Pos.subtract(this.mVertex[nearestEdge])
+      var v2= this.mVertex[(nearestEdge+1)%4].subtract(this.mVertex[nearestEdge])
       var dot = v1.dot( v2 );
       if(dot<0){
-          var dis=circ2Pos.distance(this.mVertex[NearEdge])
+          var dis=circ2Pos.distance(this.mVertex[nearestEdge])
           if(dis>otherCir.mRadius)
               return false;
-          //outside&&in_region_of_mVertex[NearEdge]
-          var normal=circ2Pos.subtract(this.mVertex[NearEdge]).normalize();
+          //outside&&in_region_of_mVertex[nearestEdge]
+          var normal=circ2Pos.subtract(this.mVertex[nearestEdge]).normalize();
           collisionInfo.setInfo(otherCir.mRadius-dis,normal,circ2Pos.add(normal.scale(-otherCir.mRadius)));
       }
       else{
-        var v1=circ2Pos.subtract(this.mVertex[(NearEdge+1)%4]); 
-        var v2=this.mVertex[NearEdge].subtract(this.mVertex[(NearEdge+1)%4]);
+        var v1=circ2Pos.subtract(this.mVertex[(nearestEdge+1)%4]); 
+        var v2=this.mVertex[nearestEdge].subtract(this.mVertex[(nearestEdge+1)%4]);
         var dot = v1.dot( v2 );
         if(dot<0){
-          var dis=circ2Pos.distance(this.mVertex[(NearEdge+1)%4])
+          var dis=circ2Pos.distance(this.mVertex[(nearestEdge+1)%4])
           if(dis>otherCir.mRadius)
               return false;
-          //outside&&in_region_of_mVertex[NearEdge+1]
-          var normal=circ2Pos.subtract(this.mVertex[(NearEdge+1)%4]).normalize();
+          //outside&&in_region_of_mVertex[nearestEdge+1]
+          var normal=circ2Pos.subtract(this.mVertex[(nearestEdge+1)%4]).normalize();
           collisionInfo.setInfo(otherCir.mRadius-dis,normal,circ2Pos.add(normal.scale(-otherCir.mRadius)));
         }
         else 
         {
-            if(BestestNum<otherCir.mRadius){
-            //outside&&in_region_of_face[NearEdge]
-            collisionInfo.setInfo(otherCir.mRadius-BestestNum,this.faceNormal[NearEdge],circ2Pos.subtract(this.faceNormal[NearEdge].scale(otherCir.mRadius)));
+            if(bestDistance<otherCir.mRadius){
+            //outside&&in_region_of_face[nearestEdge]
+            collisionInfo.setInfo(otherCir.mRadius-bestDistance,this.faceNormal[nearestEdge],circ2Pos.subtract(this.faceNormal[nearestEdge].scale(otherCir.mRadius)));
             }
             else{
                 return false;
@@ -198,7 +198,7 @@ Rectangle.prototype.collidedRectCirc = function(otherCir, collisionInfo) {
   }
   else{
       //inside
-      collisionInfo.setInfo(otherCir.mRadius-BestestNum,this.faceNormal[NearEdge],circ2Pos.subtract(this.faceNormal[NearEdge].scale(otherCir.mRadius))); 
+      collisionInfo.setInfo(otherCir.mRadius-bestDistance,this.faceNormal[nearestEdge],circ2Pos.subtract(this.faceNormal[nearestEdge].scale(otherCir.mRadius))); 
   }
   return true;
 };

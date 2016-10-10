@@ -103,8 +103,8 @@ RigidShape.prototype.collidedRectCirc = function(rect1Shape, circ2Shape, collisi
   vec2.subtract(faceNormal[3],rect1Shape.mVertex[0],rect1Shape.mVertex[1]);
   vec2.normalize(faceNormal[3],faceNormal[3]);
   var inside=true;
-  var BestestNum=-99999;
-  var NearEdge=0;
+  var bestDistance=-99999;
+  var nearestEdge=0;
   for(i = 0; i < 4; ++i)
   {
       var circ2Pos = circ2Shape.getXform().getPosition();
@@ -113,15 +113,15 @@ RigidShape.prototype.collidedRectCirc = function(rect1Shape, circ2Shape, collisi
       var projection = vec2.dot( v, faceNormal[i] );
       if(projection>0)
       {
-          BestestNum=projection;
-          NearEdge=i;
+          bestDistance=projection;
+          nearestEdge=i;
           inside=false;
           break;
       } 
-      if(projection>BestestNum)
+      if(projection>bestDistance)
       {
-         BestestNum=projection;
-         NearEdge=i;
+         bestDistance=projection;
+         nearestEdge=i;
       }
   }
   var normal= vec2.fromValues(0, 0);
@@ -130,15 +130,15 @@ RigidShape.prototype.collidedRectCirc = function(rect1Shape, circ2Shape, collisi
   {
       var v1= vec2.fromValues(0, 0);
       var v2= vec2.fromValues(0, 0);
-      vec2.subtract(v1,circ2Pos,rect1Shape.mVertex[NearEdge]);
-      vec2.subtract(v2,rect1Shape.mVertex[(NearEdge+1)%4],rect1Shape.mVertex[NearEdge]);
+      vec2.subtract(v1,circ2Pos,rect1Shape.mVertex[nearestEdge]);
+      vec2.subtract(v2,rect1Shape.mVertex[(nearestEdge+1)%4],rect1Shape.mVertex[nearestEdge]);
       var dot = vec2.dot( v1, v2 );
       if(dot<0){
-          var dis=vec2.distance(circ2Pos,rect1Shape.mVertex[NearEdge])
+          var dis=vec2.distance(circ2Pos,rect1Shape.mVertex[nearestEdge])
           if(dis>circ2Shape.mRadius)
               return false;
-          //outside&&in_region_of_mVertex[NearEdge]
-          rect1Shape.mNormal[0]=rect1Shape.mVertex[NearEdge];
+          //outside&&in_region_of_mVertex[nearestEdge]
+          rect1Shape.mNormal[0]=rect1Shape.mVertex[nearestEdge];
           vec2.subtract(normal,rect1Shape.mNormal[0],circ2Pos);
           vec2.normalize(normal,normal);
           depth=circ2Shape.mRadius-dis;
@@ -148,27 +148,27 @@ RigidShape.prototype.collidedRectCirc = function(rect1Shape, circ2Shape, collisi
       else{
         var v1= vec2.fromValues(0, 0);
         var v2= vec2.fromValues(0, 0);
-        vec2.subtract(v1,circ2Pos,rect1Shape.mVertex[(NearEdge+1)%4]);
-        vec2.subtract(v2,rect1Shape.mVertex[NearEdge],rect1Shape.mVertex[(NearEdge+1)%4]);
+        vec2.subtract(v1,circ2Pos,rect1Shape.mVertex[(nearestEdge+1)%4]);
+        vec2.subtract(v2,rect1Shape.mVertex[nearestEdge],rect1Shape.mVertex[(nearestEdge+1)%4]);
         var dot = vec2.dot( v1, v2 );
         if(dot<0){
-          var dis=vec2.distance(circ2Pos,rect1Shape.mVertex[(NearEdge+1)%4])
+          var dis=vec2.distance(circ2Pos,rect1Shape.mVertex[(nearestEdge+1)%4])
           if(dis>circ2Shape.mRadius)
               return false;
-          //outside&&in_region_of_mVertex[NearEdge]
-          rect1Shape.mNormal[0]=rect1Shape.mVertex[(NearEdge+1)%4];
+          //outside&&in_region_of_mVertex[nearestEdge]
+          rect1Shape.mNormal[0]=rect1Shape.mVertex[(nearestEdge+1)%4];
           vec2.subtract(normal,rect1Shape.mNormal[0],circ2Pos);
           vec2.normalize(normal,normal);
           depth=circ2Shape.mRadius-dis;
           vec2.scale(normal,normal,depth);
           vec2.add(rect1Shape.mNormal[1],rect1Shape.mNormal[0],normal)      
          }
-        else if(BestestNum<circ2Shape.mRadius){
-            //outside&&in_region_of_face[NearEdge]
-            vec2.scale(normal,faceNormal[NearEdge],circ2Shape.mRadius);
+        else if(bestDistance<circ2Shape.mRadius){
+            //outside&&in_region_of_face[nearestEdge]
+            vec2.scale(normal,faceNormal[nearestEdge],circ2Shape.mRadius);
             vec2.subtract(rect1Shape.mNormal[0],circ2Pos,normal);
             vec2.normalize(normal,normal);
-            depth=circ2Shape.mRadius-BestestNum;
+            depth=circ2Shape.mRadius-bestDistance;
             vec2.scale(normal,normal,depth);
             vec2.add(rect1Shape.mNormal[1],rect1Shape.mNormal[0],normal)      
         }
@@ -176,10 +176,10 @@ RigidShape.prototype.collidedRectCirc = function(rect1Shape, circ2Shape, collisi
   }
   else{
       //inside
-    vec2.scale(normal,faceNormal[NearEdge],circ2Shape.mRadius);
+    vec2.scale(normal,faceNormal[nearestEdge],circ2Shape.mRadius);
     vec2.subtract(rect1Shape.mNormal[0],circ2Pos,normal);
     vec2.normalize(normal,normal);
-    depth=circ2Shape.mRadius-BestestNum;
+    depth=circ2Shape.mRadius-bestDistance;
     vec2.scale(normal,normal,depth);
     vec2.add(rect1Shape.mNormal[1],rect1Shape.mNormal[0],normal);     
   }
