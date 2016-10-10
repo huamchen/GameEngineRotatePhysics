@@ -119,7 +119,7 @@ Rectangle.prototype.collidedRectRect = function (r1, r2, collisionInfo) {
                 collisionInfo.setInfo(collisionInfoR2.getDepth(), collisionInfoR2.getNormal().scale(-1), collisionInfoR2.mStart);
             }
         } 
-    } 
+    }
     return status1 && status2;
 };
 
@@ -167,13 +167,13 @@ Rectangle.prototype.collidedRectCirc = function (otherCir, collisionInfo) {
 
         if (dot < 0) {
             //the center of circle is in corner region of mVertex[nearestEdge]
-            dis = circ2Pos.distance(this.mVertex[nearestEdge]);
+            dis = v1.length();
             //compare the distance with radium to decide collision
             if (dis > otherCir.mRadius) {
                 return false;
             }
 
-            normal = circ2Pos.subtract(this.mVertex[nearestEdge]).normalize();
+            normal = v1.normalize();
             radiusVec = normal.scale(-otherCir.mRadius);
             collisionInfo.setInfo(otherCir.mRadius - dis, normal, circ2Pos.add(radiusVec));
         } else {
@@ -182,15 +182,15 @@ Rectangle.prototype.collidedRectCirc = function (otherCir, collisionInfo) {
             //v1 is from right vertex of face to center of circle 
             //v2 is from right vertex of face to left vertex of face
             v1 = circ2Pos.subtract(this.mVertex[(nearestEdge + 1) % 4]);
-            v2 = this.mVertex[nearestEdge].subtract(this.mVertex[(nearestEdge + 1) % 4]);
-            dot = v1.dot(v2);
+            v2 = v2.scale(-1);
+            dot = v1.dot(v2); 
             if (dot < 0) {
-                dis = circ2Pos.distance(this.mVertex[(nearestEdge + 1) % 4]);
+                dis = v1.length();
                 //compare the distance with radium to decide collision
                 if (dis > otherCir.mRadius) {
                     return false;
                 }
-                normal = circ2Pos.subtract(this.mVertex[(nearestEdge + 1) % 4]).normalize();
+                normal = v1.normalize();
                 radiusVec = normal.scale(-otherCir.mRadius);
                 collisionInfo.setInfo(otherCir.mRadius - dis, normal, circ2Pos.add(radiusVec));
             } else {
