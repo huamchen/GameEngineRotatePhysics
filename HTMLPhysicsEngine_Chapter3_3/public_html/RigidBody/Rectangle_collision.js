@@ -118,11 +118,7 @@ Rectangle.prototype.collidedRectRect = function (r1, r2, collisionInfo) {
             } else {
                 collisionInfo.setInfo(collisionInfoR2.getDepth(), collisionInfoR2.getNormal().scale(-1), collisionInfoR2.mStart);
             }
-        } else {
-            collisionInfo = new CollisionInfo();
-        }
-    } else {
-        collisionInfo = new CollisionInfo();
-    }
+        } 
+    } 
     return status1 && status2;
 };
