@@ -137,7 +137,7 @@ function userControl(event) {
     }
     if (keycode === 82) {
         //R
-        gEngine.Core.mAllObjects.splice(5, gEngine.Core.mAllObjects.length);
+        gEngine.Core.mAllObjects.splice(7, gEngine.Core.mAllObjects.length);
         gObjectNum = 0;
     }
 }

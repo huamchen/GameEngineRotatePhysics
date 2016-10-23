@@ -38,9 +38,16 @@ gEngine.Physics = (function () {
         }
 
         var n = collisionInfo.getNormal();
+        
+        
+        //the direction of collisionInfo is always from s1 to s2
+        //but the Mass is inversed, so start scale with s2 and end scale with s1
+        var start = collisionInfo.mStart.scale(s2.mInvMass / (s1.mInvMass + s2.mInvMass));
+        var end = collisionInfo.mEnd.scale(s1.mInvMass / (s1.mInvMass + s2.mInvMass));
+        var p = start.add(end);
         //r is vector from center of object to collision point
-        var r1 = collisionInfo.mStart.subtract(s1.mCenter);
-        var r2 = collisionInfo.mStart.subtract(s2.mCenter);
+        var r1 = p.subtract(s1.mCenter);
+        var r2 = p.subtract(s2.mCenter);
 
         //newV = V + mAngularVelocity cross R
         var v1 = s1.mVelocity.add(new Vec2(-1 * s1.mAngularVelocity * r1.y, s1.mAngularVelocity * r1.x));
